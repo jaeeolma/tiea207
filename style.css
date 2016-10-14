@@ -1,0 +1,15 @@
+#whole_page{
+    margin: 10%;
+}
+
+#top{
+    padding: 0.3em;
+}
+
+#otsikko{
+    font-size: 200%;
+}
+
+#table, tr, td{
+    border: 0.2em;
+}

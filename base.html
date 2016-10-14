@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+        
+        <title>Suomen vuosikatsaus</title>
+        
+        {% endblock %}
+    </head>
+    
+    <body>
+    <div id="whole_page">
+        <div id="top">
+            <h1 id="otsikko">SUOMEN VUOSIKATSAUS</h1>
+        </div>
+        
+        <div id="slider">
+        
+        </div>
+        
+        <div id="content">
+            <table id="table">
+                <tr>
+                    <th>video</th>
+                    <th>lehtiartikkeli</th>
+                </tr>
+                <tr>
+                    <th>random kuva</th>
+                    <th>sää</th>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="footer">
+            {% block footer %}
+            <p>Tekijät: Mikko Kaipainen, Janne Mäyrä, Riku Kukkaniemi, Viivi Teräväinen</p>
+            {% endblock %}
+        </div>
+    </div>
+    </body>
+</html>
