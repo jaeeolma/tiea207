@@ -1,0 +1,13 @@
+ELÄVÄN ARKISTON EMBEDAUSLOGIIKKA
+
+Käyttöehtojen mukaan embedaus vain alla olevalla koodinpätkällä:
+<div class="yle_areena_player" data-id="DATAID" data-article="ARTICLEURL"></div><script src="http://player.yle.fi/assets/js/embed.js"></script>
+
+jossa
+
+DATAID saadaan suoraan media.csv -taulusta.
+
+ARTICLEURL saadaan seuraavalla tavalla:
+
+1) Haetaan articleid taulusta media-article.csv DATAID:llä
+2) Haetaan ARTICLEURL article.csv -taulusta articleid:llä
