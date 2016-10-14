@@ -1,15 +1,40 @@
 #whole_page{
-    margin: 10%;
+    margin: 2% 30% 2% 30%;
+    text-align: center;
 }
 
 #top{
+    float: left;
+    clear: left;
     padding: 0.3em;
 }
 
 #otsikko{
-    font-size: 200%;
+    font-size: 250%;
 }
 
-#table, tr, td{
-    border: 0.2em;
+#slider{
+    clear: left;
+    float: left;
+}
+
+#content{
+    margin: 2% 30% 2% 30%;
+    clear: left;
+    float: left;
+}
+
+#footer{
+    clear: left;
+    float: left;
+}
+
+#table{
+    border-collapse: collapse;
+}
+
+th{
+    margin: 0;
+    border-color: black;
+    border: 0.1em solid;
 }
