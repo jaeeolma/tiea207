@@ -33,7 +33,8 @@
     border-collapse: collapse;
 }
 
-th{
+td{
+    width: 50%;
     margin: 0;
     border-color: black;
     border: 0.1em solid;
