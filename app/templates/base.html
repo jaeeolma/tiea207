@@ -16,7 +16,7 @@
         </div>
         
         <div id="slider">
-            <form action="" method="POST">
+            <form action="{{request.base_url}}" method="POST">
                 <p>
                 <label>Anna vuosi <input type="text" name="year" /></label>
                 </p>
@@ -27,9 +27,10 @@
         </div>
         
         <div id="content">
+		<div class="yle_areena_player" data-id="{{mid	}}" data-article="{{url}}"></div><script src="http://player.yle.fi/assets/js/embed.js"></script></td>
             <table id="table">
                 <tr>
-                    <td>video{{ url }}</td>
+                    <td>
                     <td>lehtiartikkeli</td>
                 </tr>
                 <tr>
