@@ -3,7 +3,7 @@ import random
 
 #Hakee medialistasta (tai ainakin pitäisi hakea) listan jossa vuoden embettävät mediaid:t
 
-def get_video_list(year)
+def get_video_list(year):
 	with open('C:/Kurssit/tiea207/tiea207/data/media.csv', 'rb') as media:
 		reader = csv.DictReader(media, delimiter=',')
 		#year = input('Anna vuosi: ')
@@ -20,7 +20,7 @@ def get_video_list(year)
 	return tulokset
 	
 #Hakee mediaid:tä vastaavan artikkeliurl:n	
-def get_video_url(mid)		
+def get_video_url(mid):	
 	with open('C:/Kurssit/tiea207/tiea207/data/media-article.csv', 'rb') as articlemedia:
 		reader = csv.DictReader(articlemedia, delimiter=',')
 		for row in reader:
