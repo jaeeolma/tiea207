@@ -16,13 +16,20 @@
         </div>
         
         <div id="slider">
-        
+            <form action="" method="POST">
+                <p>
+                <label>Anna vuosi <input type="text" name="year" /></label>
+                </p>
+                <p>
+                <input type="submit" name="laheta" value="Hae" />
+                </p>
+            </form>
         </div>
         
         <div id="content">
             <table id="table">
                 <tr>
-                    <td>video</td>
+                    <td>{{ url }}</td>
                     <td>lehtiartikkeli</td>
                 </tr>
                 <tr>
