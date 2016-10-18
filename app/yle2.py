@@ -1,3 +1,5 @@
+#-*- coding: utf8 -*-
+
 import unicodecsv as csv
 import random
 
@@ -19,8 +21,8 @@ def get_video_list(year):
 			
 	return tulokset
 	
-#Hakee mediaid:tä vastaavan artikkeliurl:n	
 def get_video_url(mid):	
+#Hakee mediaid:tä vastaavan artikkeliurl:n	
 	with open('C:/Kurssit/tiea207/tiea207/data/media-article.csv', 'rb') as articlemedia:
 		reader = csv.DictReader(articlemedia, delimiter=',')
 		for row in reader:
