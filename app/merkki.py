@@ -1,5 +1,7 @@
 import pandas as pd 
 import random
+
+#atm toimii vain konsolissa
 while True:
 	merkit = pd.read_csv('static/postimerkit2014.csv')
 	year = input("Anna vuosi: ")
