@@ -2,11 +2,14 @@
 
 import unicodecsv as csv
 import random
+import os
 
 #Hakee medialistasta (tai ainakin pitäisi hakea) listan jossa vuoden embettävät mediaid:t
 
 def get_video_list(year):
-	with open('C:/Kurssit/tiea207/tiea207/data/media.csv', 'rb') as media:
+    path = os.path.join(os.path.dirname(__file__), 'data/media.csv')
+    
+	with open(path) as media:
 		reader = csv.DictReader(media, delimiter=',')
 		#year = input('Anna vuosi: ')
 		tulokset = []
@@ -18,24 +21,27 @@ def get_video_list(year):
 		#	mid = random.choice(tulokset)
 		#except:
 		#	mid = ''
-			
+	media.close()
 	return tulokset
 	
 def get_video_url(mid):	
-#Hakee mediaid:tä vastaavan artikkeliurl:n	
-	with open('C:/Kurssit/tiea207/tiea207/data/media-article.csv', 'rb') as articlemedia:
+#Hakee mediaid:tä vastaavan artikkeliurl:n
+    path = os.path.join(os.path.dirname(__file__), 'data/media-article.csv')
+	with open(path) as articlemedia:
 		reader = csv.DictReader(articlemedia, delimiter=',')
 		for row in reader:
 			if row['MID'] == mid:
 				aid = row['AID']
 				break
-		
-
-	with open('C:/Kurssit/tiea207/tiea207/data/articles.csv', 'rb') as articles:
+	
+    articlemedia.close()
+    path2 = os.path.join(os.path.dirname(__file__), 'data/articles.csv')
+	with open(path2) as articles:
 		reader = csv.DictReader(articles, delimiter=',')
 		for row in reader:
 			if row['AID'] == aid:
 				url = row['URL']
 				break
-		
+	
+    articles.close()
 	return url
