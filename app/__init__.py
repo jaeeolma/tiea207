@@ -24,7 +24,11 @@ def hello_world():
         tulokset = get_video_list('1992')
     mid = random.choice(tulokset)
     url = get_video_url(mid)
+
+    postimerkki_url = merkin_url(year)
+
     return render_template('base.html',
+                           postimerkki_url=postimerkki_url,
                            url=url,
                            mid=mid)
 

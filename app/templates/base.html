@@ -3,18 +3,18 @@
     <head>
         {% block head %}
         <link rel="stylesheet" href="style.css" />
-        
+
         <title>Suomen vuosikatsaus</title>
-        
+
         {% endblock %}
     </head>
-    
+
     <body>
     <div id="whole_page">
         <div id="top">
             <h1 id="otsikko">SUOMEN VUOSIKATSAUS</h1>
         </div>
-        
+
         <div id="slider">
             <form action="{{request.base_url}}" method="POST">
                 <p>
@@ -25,9 +25,9 @@
                 </p>
             </form>
         </div>
-        
+
         <div id="content">
-		<div class="postimerkki"><img src="{{kuva}}"></div>
+		<div class="postimerkki"><img src="{{postimerkki_url}}"></div>
 		<div class="yle_areena_player" data-id="{{mid}}" data-article="{{url}}"></div><script src="http://player.yle.fi/assets/js/embed.js"></script>
             <table id="table">
                 <tr>
@@ -43,7 +43,7 @@
                 </tr>
             </table>
         </div>
-        
+
         <div id="footer">
             {% block footer %}
             <p>Mikko Kaipainen, Janne Mäyrä, Riku Kukkaniemi, Viivi Teräväinen from University of Jyväskylä</p>

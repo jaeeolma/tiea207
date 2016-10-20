@@ -4,11 +4,11 @@ import os
 import random
 
 
-def merkin_url():
+def merkin_url(year):
     vuodet_list = []
-    vuosi_numero = random.randrange(1918,2014)
+    vuosi_numero = year
     etsittava_vuosi = str(vuosi_numero)
-    path = os.path.join(os.path.dirname(__file__), 'data/merkit.csv')
+    path = os.path.join(os.path.dirname(__file__), '../data/merkit.csv')
 
     with open(path) as csvfile:
         reader = csv.DictReader(csvfile)
