@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template, request
 from yle2 import get_video_list
 from yle2 import get_video_url
+from postimerkki import merkin_url
 import os
 import csv
 import random
