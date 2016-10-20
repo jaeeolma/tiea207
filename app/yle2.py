@@ -7,7 +7,7 @@ import os
 #Hakee medialistasta (tai ainakin pitäisi hakea) listan jossa vuoden embettävät mediaid:t
 
 def get_video_list(year):
-    path = os.path.join(os.path.dirname(__file__), 'data/media.csv')
+    path = os.path.join(os.path.dirname(__file__), '../data/media.csv')
     
     with open(path) as media:
         reader = csv.DictReader(media, delimiter=',')
@@ -26,7 +26,7 @@ def get_video_list(year):
     
 def get_video_url(mid): 
 #Hakee mediaid:tä vastaavan artikkeliurl:n
-    path = os.path.join(os.path.dirname(__file__), 'data/media-article.csv')
+    path = os.path.join(os.path.dirname(__file__), '../data/media-article.csv')
     with open(path) as articlemedia:
         reader = csv.DictReader(articlemedia, delimiter=',')
         for row in reader:
@@ -35,7 +35,7 @@ def get_video_url(mid):
                 break
     
     articlemedia.close()
-    path2 = os.path.join(os.path.dirname(__file__), 'data/articles.csv')
+    path2 = os.path.join(os.path.dirname(__file__), '../data/articles.csv')
     with open(path2) as articles:
         reader = csv.DictReader(articles, delimiter=',')
         for row in reader:
