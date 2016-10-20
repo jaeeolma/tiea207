@@ -9,39 +9,39 @@ import os
 def get_video_list(year):
     path = os.path.join(os.path.dirname(__file__), 'data/media.csv')
     
-	with open(path) as media:
-		reader = csv.DictReader(media, delimiter=',')
-		#year = input('Anna vuosi: ')
-		tulokset = []
-		for row in reader:
-			if row['EMBED'] == '1' and year in row['FIRSTRUN']:
-				tulokset.append(row['MID'])
-		
-		#try:
-		#	mid = random.choice(tulokset)
-		#except:
-		#	mid = ''
-	media.close()
-	return tulokset
-	
-def get_video_url(mid):	
+    with open(path) as media:
+        reader = csv.DictReader(media, delimiter=',')
+        #year = input('Anna vuosi: ')
+        tulokset = []
+        for row in reader:
+            if row['EMBED'] == '1' and year in row['FIRSTRUN']:
+                tulokset.append(row['MID'])
+        
+        #try:
+        #   mid = random.choice(tulokset)
+        #except:
+        #   mid = ''
+    media.close()
+    return tulokset
+    
+def get_video_url(mid): 
 #Hakee mediaid:tä vastaavan artikkeliurl:n
     path = os.path.join(os.path.dirname(__file__), 'data/media-article.csv')
-	with open(path) as articlemedia:
-		reader = csv.DictReader(articlemedia, delimiter=',')
-		for row in reader:
-			if row['MID'] == mid:
-				aid = row['AID']
-				break
-	
+    with open(path) as articlemedia:
+        reader = csv.DictReader(articlemedia, delimiter=',')
+        for row in reader:
+            if row['MID'] == mid:
+                aid = row['AID']
+                break
+    
     articlemedia.close()
     path2 = os.path.join(os.path.dirname(__file__), 'data/articles.csv')
-	with open(path2) as articles:
-		reader = csv.DictReader(articles, delimiter=',')
-		for row in reader:
-			if row['AID'] == aid:
-				url = row['URL']
-				break
-	
+    with open(path2) as articles:
+        reader = csv.DictReader(articles, delimiter=',')
+        for row in reader:
+            if row['AID'] == aid:
+                url = row['URL']
+                break
+    
     articles.close()
-	return url
+    return url
