@@ -1,1 +1,1 @@
-web: python app/__init__.py
+web: export FLASK_APP=app/__init__.py && flask run --host=0.0.0.0 --port=$PORT
