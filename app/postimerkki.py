@@ -15,5 +15,4 @@ def merkin_url(year):
         for row in reader:
             if etsittava_vuosi in row['ilmestymispaiva']:
                  vuodet_list.append(row['kuvan_url'])
-    osoite = random.choice(vuodet_list)
-    return osoite
+    return vuodet_list

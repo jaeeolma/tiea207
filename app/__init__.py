@@ -21,11 +21,18 @@ def hello_world():
         year = '1993'
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
-        tulokset = get_video_list('1992')
-    mid = random.choice(tulokset)
-    url = get_video_url(mid)
+        mid = ''
+        url = ''
+    else:
+        mid = random.choice(tulokset)
+        url = get_video_url(mid)
 
-    postimerkki_url = merkin_url(year)
+    postimerkit = merkin_url(year)
+    if len(postimerkit) == 0:
+        postimerkki_url = ''
+    else:
+        postimerkki_url = random.choice(postimerkit)
+
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
