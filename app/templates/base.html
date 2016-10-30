@@ -37,7 +37,11 @@
         {% else %}
             <div class="yle_areena_player" data-id="{{mid}}" data-article="{{url}}"></div><script src="http://player.yle.fi/assets/js/embed.js"></script>
         {% endif %}
+        {% if finna_url == '' %}
+            <p> Finnan kanta ei löytänyt vuotta :-(</p>
+        {% else %}
             <div class="finna"><img src="{{finna_url}}"></div>
+        {% endif %}
             <table id="table">
                 <tr>
 

@@ -19,7 +19,7 @@ def hello_world():
     try:
         year = request.form['year']
     except:
-        year = '1993'
+        year = '1962'
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
         mid = ''
@@ -33,8 +33,8 @@ def hello_world():
         postimerkki_url = ''
     else:
         postimerkki_url = random.choice(postimerkit)
-        
-    finna_url = return_url(year + '.')
+
+    finna_url = return_url(year)
 
 
     return render_template('base.html',
