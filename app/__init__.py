@@ -3,6 +3,7 @@ from flask import render_template, request
 from yle2 import get_video_list
 from yle2 import get_video_url
 from postimerkki import merkin_url
+from postimerkki import merkin_nimi
 import os
 import csv
 import random
@@ -28,14 +29,18 @@ def hello_world():
         url = get_video_url(mid)
 
     postimerkit = merkin_url(year)
+    postimerkki_nimi = ''
     if len(postimerkit) == 0:
         postimerkki_url = ''
     else:
         postimerkki_url = random.choice(postimerkit)
+        postimerkki_nimet = merkin_nimi(postimerkki_url)
+        postimerkki_nimi = random.choice(postimerkki_nimet)
 
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
+                           postimerkki_nimi=postimerkki_nimi,
                            url=url,
                            mid=mid)
 
