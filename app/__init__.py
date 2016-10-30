@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template, request
 from yle2 import get_video_list
 from yle2 import get_video_url
+from finna import return_url
 from postimerkki import merkin_url
 from postimerkki import merkin_nimi
 import os
@@ -36,13 +37,16 @@ def hello_world():
         postimerkki_url = random.choice(postimerkit)
         postimerkki_nimet = merkin_nimi(postimerkki_url)
         postimerkki_nimi = random.choice(postimerkki_nimet)
+        
+    finna_url = return_url(year + '.')
 
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
-                           postimerkki_nimi=postimerkki_nimi,
                            url=url,
-                           mid=mid)
+                           mid=mid,
+                           finna_url=finna_url,
+						   postimerkki_nimi=postimerkki_nimi)
 
 
 if __name__ == '__main__':
