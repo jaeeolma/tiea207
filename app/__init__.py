@@ -4,7 +4,7 @@ from yle2 import get_video_list
 from yle2 import get_video_url
 from finna import return_url
 from postimerkki import merkin_url
-from postimerkki import merkin_nimi
+from postimerkki import merkin_tiedot
 import os
 import csv
 import random
@@ -35,8 +35,8 @@ def hello_world():
         postimerkki_url = ''
     else:
         postimerkki_url = random.choice(postimerkit)
-        postimerkki_nimet = merkin_nimi(postimerkki_url)
-        postimerkki_nimi = random.choice(postimerkki_nimet)
+        postimerkki_tiedot = merkin_tiedot(postimerkki_url)
+        postimerkki_nimi = ', Ilmestymispaiva: '.join(postimerkki_tiedot)
         
     finna_url = return_url(year + '.')
 
