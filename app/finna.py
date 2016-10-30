@@ -25,8 +25,8 @@ def transform_hit(hit):
 def validate_result(result):
     if 'image' not in result:
         return False
-    if 'year' not in result:
-        return False
+    #if 'year' not in result:
+    #    return False
     return True
 
 def search_finna(year):
@@ -47,7 +47,13 @@ def search_finna(year):
         
 def return_url(year):
     result = search_finna(year)
+    if result is None:
+        finnayear = year + '.'
+        result = search_finna(finnayear)
+    if result is None:
+        return '';
     imgurl = FINNA_IMAGE_URL + result['image']
+    return imgurl
         
 #year = input("anna vuosi: ")
 #tulos = search_finna(year)

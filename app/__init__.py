@@ -20,7 +20,7 @@ def hello_world():
     try:
         year = request.form['year']
     except:
-        year = '1993'
+        year = '1962'
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
         mid = ''
@@ -30,7 +30,6 @@ def hello_world():
         url = get_video_url(mid)
 
     postimerkit = merkin_url(year)
-    postimerkki_nimi = ''
     if len(postimerkit) == 0:
         postimerkki_url = ''
     else:
@@ -38,15 +37,15 @@ def hello_world():
         postimerkki_tiedot = merkin_tiedot(postimerkki_url)
         postimerkki_nimi = ', Ilmestymispaiva: '.join(postimerkki_tiedot)
         
-    finna_url = return_url(year + '.')
+
+    finna_url = return_url(year)
 
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
                            url=url,
                            mid=mid,
-                           finna_url=finna_url,
-						   postimerkki_nimi=postimerkki_nimi)
+                           finna_url=finna_url)
 
 
 if __name__ == '__main__':
