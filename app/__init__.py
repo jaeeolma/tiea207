@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template, request
 from yle2 import get_video_list
 from yle2 import get_video_url
+from finna import return_url
 from postimerkki import merkin_url
 import os
 import csv
@@ -32,12 +33,15 @@ def hello_world():
         postimerkki_url = ''
     else:
         postimerkki_url = random.choice(postimerkit)
+        
+    finna_url = return_url(year + '.')
 
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
                            url=url,
-                           mid=mid)
+                           mid=mid,
+                           finna_url=finna_url)
 
 
 if __name__ == '__main__':
