@@ -45,7 +45,8 @@ def hello_world():
                            postimerkki_url=postimerkki_url,
                            url=url,
                            mid=mid,
-                           finna_url=finna_url)
+                           finna_url=finna_url,
+                           postimerkki_nimi=postimerkki_nimi)
 
 
 if __name__ == '__main__':
