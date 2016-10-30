@@ -45,7 +45,7 @@ def search_finna(year):
     else:
         return None
         
-def return_url(year)
+def return_url(year):
     result = search_finna(year)
     imgurl = FINNA_IMAGE_URL + result['image']
         
