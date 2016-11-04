@@ -3,6 +3,7 @@
 import requests
 import random
 import urllib
+from random import randint
 
 #Koodiin haettu voimakkaasti vaikutteita FinnaBotin koodista
 
@@ -32,11 +33,22 @@ def validate_result(result):
     #    return False
     return True
 
+def get_pages(year):
+    facet = 'era_facet:' + str(year)
+    filters = ['format:0/Image/', 'online_boolean:1', facet]
+    params = {'filter[]': filters, 'lookfor':'', 'lng':'fi','limit':0}
+    r = requests.get(FINNA_API_SEARCH, params=params)
+    response = r.json()
+    count = response['resultCount']
+    return int(count/100 + 1)
+    
 def search_finna(year):
     fields = ['title', 'images', 'id', 'year']
     facet = 'era_facet:' + str(year)
     filters = ['format:0/Image/', 'online_boolean:1', facet]
-    params = {'filter[]': filters, 'lookfor':'','lng':'fi','limit':100, 'field[]':fields, 'page':1} #maksimihakutulosmäärä on 100 per sivu :(
+    pages = get_pages(year)
+    page = randint(1,pages)
+    params = {'filter[]': filters, 'lookfor':'','lng':'fi','limit':100, 'field[]':fields, 'page':page} 
     r = requests.get(FINNA_API_SEARCH, params=params)
     response = r.json()
     if 'records' in response:
@@ -60,5 +72,6 @@ def return_url(year):
 #tulos = search_finna(year)
 #imgurl = FINNA_IMAGE_URL + tulos['image']
 #print(imgurl)
-
+#count = get_pages(year)
+#print(count)
         
