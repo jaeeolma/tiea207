@@ -9,6 +9,7 @@ import os
 import csv
 import random
 import sys
+import urllib
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -45,7 +46,7 @@ def hello_world():
         
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
-    finna_record = FINNA_RECORD_URL + finnaresult['id']
+    finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
     
 
 
