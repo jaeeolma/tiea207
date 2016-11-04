@@ -18,7 +18,8 @@
         <div id="slider">
             <form action="{{request.base_url}}" method="POST">
                 <p>
-                <label>Anna vuosi <input type="text" name="year" /></label>
+                Vuosi: <input type="range" name="year" value="1917" min="1917" max="2016" oninput="this.form.amountInput.value=this.value" />
+                       <input type="number" name="amountInput" value="1917" min="1917" max="2016" oninput="this.form.year.value=this.value" />
                 </p>
                 <p>
                 <input type="submit" name="laheta" value="Hae" />
