@@ -42,7 +42,7 @@ def search_finna(year):
     if 'records' in response:
         results = [transform_hit(hit) for hit in response['records']]
         validated_results = filter(validate_result, results)
-        if len(validated_results) > 0
+        if len(validated_results) > 0:
             return random.choice(validated_results)
         else:
             return None
