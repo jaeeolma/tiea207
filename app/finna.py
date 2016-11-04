@@ -31,14 +31,16 @@ def validate_result(result):
 
 def search_finna(year):
     fields = ['title', 'images', 'id', 'year']
-    filters = ['format:0/Image/', 'online_boolean:1']
-    params = {'filter[]': filters, 'lookfor':year,'lng':'fi','field[]':fields}
+    facet = 'era_facet:' + str(year)
+    filters = ['format:0/Image/', 'online_boolean:1', facet]
+    params = {'filter[]': filters, 'lookfor':str(year),'lng':'fi','limit':100, 'field[]':fields}
     r = requests.get(FINNA_API_SEARCH, params=params)
     response = r.json()
     if 'records' in response:
         results = [transform_hit(hit) for hit in response['records']]
         validated_results = filter(validate_result, results)
         if len(validated_results) > 0:
+            print(len(validated_results))
             return random.choice(validated_results)
         else:
             return None
@@ -48,14 +50,11 @@ def search_finna(year):
 def return_url(year):
     result = search_finna(year)
     if result is None:
-        finnayear = year + '.'
-        result = search_finna(finnayear)
-    if result is None:
         return '';
     imgurl = FINNA_IMAGE_URL + result['image']
     return imgurl
         
-#year = input("anna vuosi: ")
+#year = input('anna vuosi: ')
 #tulos = search_finna(year)
 #imgurl = FINNA_IMAGE_URL + tulos['image']
 #print(imgurl)
