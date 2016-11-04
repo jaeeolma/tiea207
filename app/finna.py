@@ -1,13 +1,16 @@
+#-*- coding: utf8 -*-
+
 import requests
 import random
 import urllib
-#from PIL import Image
+
+#Koodiin haettu voimakkaasti vaikutteita FinnaBotin koodista
 
 FINNA_API_SEARCH='https://api.finna.fi/v1/search'
 FINNA_RECORD_URL='https://www.finna.fi/record'
 FINNA_IMAGE_URL='https://api.finna.fi'
 
-IMAGE_MINZISE_BYTES=1024
+IMAGE_MINSISE_BYTES=1024
 IMAGE_MAXSIZE_BYTES=1024*1024
 IMAGE_MAXSIZE_SCALED=(1024,1024)
 
@@ -33,14 +36,13 @@ def search_finna(year):
     fields = ['title', 'images', 'id', 'year']
     facet = 'era_facet:' + str(year)
     filters = ['format:0/Image/', 'online_boolean:1', facet]
-    params = {'filter[]': filters, 'lookfor':str(year),'lng':'fi','limit':100, 'field[]':fields}
+    params = {'filter[]': filters, 'lookfor':'','lng':'fi','limit':100, 'field[]':fields, 'page':1} #maksimihakutulosmäärä on 100 per sivu :(
     r = requests.get(FINNA_API_SEARCH, params=params)
     response = r.json()
     if 'records' in response:
         results = [transform_hit(hit) for hit in response['records']]
         validated_results = filter(validate_result, results)
-        if len(validated_results) > 0:
-            print(len(validated_results))
+        if len(validated_results) > 0
             return random.choice(validated_results)
         else:
             return None
