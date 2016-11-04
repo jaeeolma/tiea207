@@ -40,9 +40,10 @@ def hello_world():
         postimerkki_tiedot = merkin_tiedot(postimerkki_url)
         postimerkki_nimi = postimerkki_tiedot[0]
         postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
-        
+
 
     finna_url = return_url(year)
+
 
 
     return render_template('base.html',
@@ -51,8 +52,8 @@ def hello_world():
                            mid=mid,
                            finna_url=finna_url,
                            postimerkki_nimi=postimerkki_nimi,
-                           postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva)
-
+                           postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva,
+                           year=year)
 
 if __name__ == '__main__':
     app.run()
