@@ -42,11 +42,18 @@ def hello_world():
         postimerkki_tiedot = merkin_tiedot(postimerkki_url)
         postimerkki_nimi = postimerkki_tiedot[0]
         postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
+<<<<<<< HEAD
         
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
     finna_record = FINNA_RECORD_URL + finnaresult['id']
     
+=======
+
+
+    finna_url = return_url(year)
+>>>>>>> origin/master
+
 
 
     return render_template('base.html',
@@ -56,8 +63,8 @@ def hello_world():
                            finna_kuva=finna_kuva,
                            finna_record = finna_record,
                            postimerkki_nimi=postimerkki_nimi,
-                           postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva)
-
+                           postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva,
+                           year=year)
 
 if __name__ == '__main__':
     app.run()
