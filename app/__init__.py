@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template, request
 from yle2 import get_video_list
 from yle2 import get_video_url
-from finna import return_url
+from finna import search_finna
 from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 import os
@@ -12,6 +12,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+FINNA_RECORD_URL='https://www.finna.fi/record'
+FINNA_IMAGE_URL='https://api.finna.fi'
 
 app = Flask(__name__)
 
@@ -41,15 +43,18 @@ def hello_world():
         postimerkki_nimi = postimerkki_tiedot[0]
         postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
         
-
-    finna_url = return_url(year)
+    finnaresult = search_finna(year)
+    finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
+    finna_record = FINNA_RECORD_URL + finnaresult['id']
+    
 
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
                            url=url,
                            mid=mid,
-                           finna_url=finna_url,
+                           finna_kuva=finna_kuva,
+                           finna_record = finna_record,
                            postimerkki_nimi=postimerkki_nimi,
                            postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva)
 
