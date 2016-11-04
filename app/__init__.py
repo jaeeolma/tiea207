@@ -12,7 +12,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-FINNA_RECORD_URL='https://www.finna.fi/record'
+FINNA_RECORD_URL='https://www.finna.fi/record/'
 FINNA_IMAGE_URL='https://api.finna.fi'
 
 app = Flask(__name__)
