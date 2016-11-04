@@ -30,7 +30,7 @@
             {% if postimerkki_url == '' %}
             <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
-            <div class="postimerkki"><img src="{{postimerkki_url}}" alt="{{postimerkki_url}}" title="{{postimerkki_nimi}}"></div>
+            <div class="postimerkki"><img src="{{postimerkki_url}}" alt="{{postimerkki_url}}" title="{{postimerkki_nimi}} | {{postimerkki_ilmestymispaiva}}"></div>
             {% endif %}
         {% if mid == '' %}
 		    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>

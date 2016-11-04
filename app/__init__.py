@@ -8,6 +8,9 @@ from postimerkki import merkin_tiedot
 import os
 import csv
 import random
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 
 app = Flask(__name__)
@@ -35,7 +38,8 @@ def hello_world():
     else:
         postimerkki_url = random.choice(postimerkit)
         postimerkki_tiedot = merkin_tiedot(postimerkki_url)
-        postimerkki_nimi = ', Ilmestymispaiva: '.join(postimerkki_tiedot)
+        postimerkki_nimi = postimerkki_tiedot[0]
+        postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
         
 
     finna_url = return_url(year)
@@ -46,7 +50,8 @@ def hello_world():
                            url=url,
                            mid=mid,
                            finna_url=finna_url,
-                           postimerkki_nimi=postimerkki_nimi)
+                           postimerkki_nimi=postimerkki_nimi,
+                           postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva)
 
 
 if __name__ == '__main__':

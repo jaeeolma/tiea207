@@ -2,6 +2,9 @@
 import csv
 import os
 import random
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 
 def merkin_url(year):
@@ -26,6 +29,6 @@ def merkin_tiedot(url):
         reader = csv.DictReader(csvfile)
         for row in reader:
             if etsittava_url in row['kuvan_url']:
-                tiedot_list.append(row['kuvan_url'])
+                tiedot_list.append(row['merkin_nimi'])
                 tiedot_list.append(row['ilmestymispaiva'])
     return tiedot_list
