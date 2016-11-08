@@ -50,7 +50,7 @@
             {% else %}
             {% for merkki in postimerkki_urlit %}
                 <div class="postimerkki"><img src="{{ merkki }}" alt="{{ merkki }}"
-                                              title="{{ postimerkki_nimi }} | {{ postimerkki_ilmestymispaiva }}"></div>
+                                              title="{{ postimerkki_tiedot[0] }}"></div>
             {% endfor %}
             {% endif %}
         </div>
