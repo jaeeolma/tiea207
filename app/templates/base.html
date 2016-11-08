@@ -1,68 +1,90 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% block head %}
-        <link type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+<head>
+    <title>Suomen vuosikatsaus</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link type="text/css" href="{{ url_for('static', filename='style.css') }}" /> -->
+    <style>
+        .affix {
+            top: 0;
+            width: 100%;
+        }
+        .affix + .container-fluid {
+            padding-top: 70px;
+        }
+    </style>
+</head>
 
-        <title>Suomen vuosikatsaus</title>
-
-        {% endblock %}
-    </head>
-
-    <body>
-    <div id="whole_page">
-        <div id="top">
-            <h1 id="otsikko">SUOMEN VUOSIKATSAUS</h1>
-        </div>
-
-        <div id="slider">
-            <form action="{{request.base_url}}" method="POST">
-                <p>
-                Vuosi: <input type="range" name="year" value="{{year}}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value" />
-                       <input type="number" name="amountInput" value="{{year}}" min="1917" max="2016" oninput="this.form.year.value=this.value" />
-                </p>
-                <p>
-                <input type="submit" name="laheta" value="Hae" />
-                </p>
-            </form>
-        </div>
-
-        <div id="content">
-            {% if postimerkki_url == '' %}
-            <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
-            {% else %}
-            <div class="postimerkki"><img src="{{postimerkki_url}}" alt="{{postimerkki_url}}" title="{{postimerkki_nimi}} | {{postimerkki_ilmestymispaiva}}"></div>
-            {% endif %}
-        {% if mid == '' %}
-		    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
-        {% else %}
-            <div class="yle_areena_player" data-id="{{mid}}" data-article="{{url}}"></div><script src="http://player.yle.fi/assets/js/embed.js"></script>
-        {% endif %}
-        {% if finna_url == '' %}
-            <p> Finnan kanta ei löytänyt vuotta :-(</p>
-        {% else %}
-            <div class="finna"><a href="{{finna_record}}"><img src="{{finna_kuva}}"></a></div>
-        {% endif %}
-            <table id="table">
-                <tr>
-
-
-                    <td>{{ url }}</td>
-
-                    <td>lehtiartikkeli</td>
-                </tr>
-                <tr>
-                    <td>random kuva</td>
-                    <td>sää</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="footer">
-            {% block footer %}
-            <p>Mikko Kaipainen, Janne Mäyrä, Riku Kukkaniemi, Viivi Teräväinen from University of Jyväskylä</p>
-            {% endblock %}
+<body>
+<div class="container-fluid" style="color:#000000;height:200px;">
+    <div class="row" id="otsikkorivi">
+        <div class="col-sm-12">
+            <div class="jumbotron"><h1>SUOMEN VUOSIKATSAUS</h1></div>
         </div>
     </div>
-    </body>
+</div>
+
+<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+    <div class="col-sm-12">
+        <form action="{{ request.base_url }}" method="POST">
+            <div class="row" style="color:#FFFFFF;">Vuosi:</div>
+            <div class="row">
+                <input type="range" name="year" value="{{ year }}" min="1917" max="2016"
+                       oninput="this.form.amountInput.value=this.value"/>
+            </div>
+            <div class="row">
+                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016"
+                       oninput="this.form.year.value=this.value"/>
+                <input type="submit" name="laheta" value="Hae"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            {% if postimerkki_url == '' %}
+                <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
+            {% else %}
+                <div class="postimerkki"><img src="{{ postimerkki_url }}" alt="{{ postimerkki_url }}"
+                                              title="{{ postimerkki_nimi }} | {{ postimerkki_ilmestymispaiva }}"></div>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6">
+            <div class="embed-responsive embed-responsive-16by9">
+                {% if mid == '' %}
+                    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
+                {% else %}
+                    <div class="yle_areena_player" data-id="{{ mid }}" data-article="{{ url }}"></div>
+                    <script src="http://player.yle.fi/assets/js/embed.js"></script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            {% if finna_url == '' %}
+                <p> Finnan kanta ei löytänyt vuotta :-(</p>
+            {% else %}
+                <div class="finna"><a href="{{ finna_record }}"><img src="{{ finna_kuva }}" class="img-responsive"></a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-6">{{ url }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Sivuston tekijat Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
+        </div>
+    </div>
+</div>
+</body>
 </html>
