@@ -48,8 +48,10 @@
             {% if postimerkki_url == '' %}
                 <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
-                <div class="postimerkki"><img src="{{ postimerkki_url }}" alt="{{ postimerkki_url }}"
+            {% for merkki in postimerkki_urlit %}
+                <div class="postimerkki"><img src="{{ merkki }}" alt="{{ merkki }}"
                                               title="{{ postimerkki_nimi }} | {{ postimerkki_ilmestymispaiva }}"></div>
+            {% endfor %}
             {% endif %}
         </div>
 
