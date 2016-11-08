@@ -27,6 +27,7 @@ def hello_world():
         year = request.form['year']
     except:
         year = '1962'
+
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
         mid = ''
@@ -36,13 +37,20 @@ def hello_world():
         url = get_video_url(mid)
 
     postimerkit = merkin_url(year)
+    postimerkki_urlit = []
+    postimerkki_tiedot = []
     if len(postimerkit) == 0:
+        postimerkki_urlit.append('')
         postimerkki_url = ''
     else:
-        postimerkki_url = random.choice(postimerkit)
-        postimerkki_tiedot = merkin_tiedot(postimerkki_url)
-        postimerkki_nimi = postimerkki_tiedot[0]
-        postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
+        for x in range(0, 3):
+            postimerkki_url = random.choice(postimerkit)
+            if (postimerkki_url not in postimerkki_urlit):
+                postimerkki_urlit.append(postimerkki_url)
+                url_tiedot = merkin_tiedot(postimerkki_url)
+                postimerkki_tiedot = postimerkki_tiedot + url_tiedot
+                postimerkki_nimi = postimerkki_tiedot[0]
+                postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
         
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
@@ -59,7 +67,9 @@ def hello_world():
                            finna_record = finna_record,
                            postimerkki_nimi=postimerkki_nimi,
                            postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva,
-                           year=year)
+                           year=year,
+                           postimerkki_urlit = postimerkki_urlit,
+                           postimerkki_tiedot = postimerkki_tiedot)
 
 if __name__ == '__main__':
     app.run()
