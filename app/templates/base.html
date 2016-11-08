@@ -18,7 +18,8 @@
         <div id="slider">
             <form action="{{request.base_url}}" method="POST">
                 <p>
-                <label>Anna vuosi <input type="text" name="year" /></label>
+                Vuosi: <input type="range" name="year" value="{{year}}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value" />
+                       <input type="number" name="amountInput" value="{{year}}" min="1917" max="2016" oninput="this.form.year.value=this.value" />
                 </p>
                 <p>
                 <input type="submit" name="laheta" value="Hae" />
@@ -30,12 +31,17 @@
             {% if postimerkki_url == '' %}
             <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
-            <div class="postimerkki"><img src="{{postimerkki_url}}"></div>
+            <div class="postimerkki"><img src="{{postimerkki_url}}" alt="{{postimerkki_url}}" title="{{postimerkki_nimi}} | {{postimerkki_ilmestymispaiva}}"></div>
             {% endif %}
         {% if mid == '' %}
 		    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
         {% else %}
             <div class="yle_areena_player" data-id="{{mid}}" data-article="{{url}}"></div><script src="http://player.yle.fi/assets/js/embed.js"></script>
+        {% endif %}
+        {% if finna_url == '' %}
+            <p> Finnan kanta ei löytänyt vuotta :-(</p>
+        {% else %}
+            <div class="finna"><a href="{{finna_record}}"><img src="{{finna_kuva}}"></a></div>
         {% endif %}
             <table id="table">
                 <tr>
