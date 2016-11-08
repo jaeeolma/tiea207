@@ -1,41 +1,8 @@
-#whole_page{
-    margin: 2% 30% 2% 30%;
-    text-align: center;
-}
-
-#top{
-    float: left;
-    clear: left;
-    padding: 0.3em;
-}
-
-#otsikko{
-    font-size: 250%;
-}
-
-#slider{
-    clear: left;
-    float: left;
-}
-
-#content{
-    margin: 2% 30% 2% 30%;
-    clear: left;
-    float: left;
-}
-
-#footer{
-    clear: left;
-    float: left;
-}
-
-#table{
-    border-collapse: collapse;
-}
-
-td{
-    width: 50%;
-    margin: 0;
-    border-color: black;
-    border: 0.1em solid;
-}
+.affix {
+    top: 0;
+    width: 100%;
+  }
+  
+.affix + .container-fluid {
+    padding-top: 70px;
+  }
