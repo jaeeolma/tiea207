@@ -30,8 +30,7 @@
         <form action="{{ request.base_url }}" method="POST">
             <div class="row" style="color:#FFFFFF;">Vuosi:</div>
             <div class="row">
-                <input type="range" name="year" value="{{ year }}" min="1917" max="2016"
-                       oninput="this.form.amountInput.value=this.value"/>
+                <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
             </div>
             <div class="row">
                 <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016"
@@ -49,8 +48,7 @@
                 <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="postimerkki"><img src="{{ merkki }}" alt="{{ merkki }}"
-                                              title="{{ postimerkki_tiedot[0] }}"></div>
+                <div class="postimerkki"><img src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
             {% endfor %}
             {% endif %}
         </div>
@@ -81,7 +79,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <p>Sivuston tekijat Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
+            <p>Sivuston tekijät Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
         </div>
     </div>
 </div>
