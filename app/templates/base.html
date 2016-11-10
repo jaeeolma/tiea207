@@ -48,7 +48,7 @@
                 <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="postimerkki"><img src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
+                <div class="col-sm-6"><img src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }} class="img-responsive""></div>
             {% endfor %}
             {% endif %}
         </div>
