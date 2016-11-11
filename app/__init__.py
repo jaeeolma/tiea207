@@ -6,6 +6,7 @@ from finna import search_finna
 from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
+from presidentti import hae_presidentin_nimi
 import os
 import csv
 import random
@@ -63,6 +64,7 @@ def hello_world():
     
 
     presidentin_kuva = hae_presidentti(year)
+    presidentin_nimi = hae_presidentin_nimi(year)
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
@@ -77,7 +79,8 @@ def hello_world():
                            year=year,
                            postimerkki_urlit = postimerkki_urlit,
                            postimerkki_tiedot = postimerkki_tiedot,
-                           presidentin_kuva=presidentin_kuva)
+                           presidentin_kuva=presidentin_kuva,
+                           presidentin_nimi=presidentin_nimi)
 
 if __name__ == '__main__':
     app.run()
