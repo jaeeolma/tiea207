@@ -68,8 +68,8 @@ def hello_world():
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
-                           url=url,
-                           mid=mid,
+                           areena_url=areena_url,
+                           areena_mid=areena_mid,
                            finna_kuva=finna_kuva,
                            finna_record = finna_record,
                            finna_title = finna_title,
