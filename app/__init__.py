@@ -50,10 +50,7 @@ def hello_world():
             if (postimerkki_url not in postimerkki_urlit):
                 postimerkki_urlit.append(postimerkki_url)
                 url_tiedot = merkin_tiedot(postimerkki_url)
-                ' | '.join(url_tiedot)
                 postimerkki_tiedot = postimerkki_tiedot + url_tiedot
-                postimerkki_nimi = postimerkki_tiedot[0]
-                postimerkki_ilmestymispaiva = postimerkki_tiedot[1]
         
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
@@ -74,8 +71,6 @@ def hello_world():
                            finna_record = finna_record,
                            finna_title = finna_title,
                            finna_source = finna_source,
-                           postimerkki_nimi=postimerkki_nimi,
-                           postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva,
                            year=year,
                            postimerkki_urlit = postimerkki_urlit,
                            postimerkki_tiedot = postimerkki_tiedot,
