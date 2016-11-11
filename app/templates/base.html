@@ -21,6 +21,10 @@
 		.navbar {
 			z-index: 10;
 		}
+		
+		.col-sm-6 {
+			margin: 1%;
+		}
     </style>
 </head>
 
@@ -52,13 +56,8 @@
                 <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6"><img src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}" class="img-responsive"></div>
+                <div class="col-sm-6"><img class="img-responsive" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
             {% endfor %}
-            {% endif %}
-            {% if presidentin_kuva == '' %}
-                <div class="presidentti"><p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p></div>
-            {% else %}
-                <div class="col-sm-6"><img src="{{ presidentin_kuva }}" class="img-responsive"></div>
             {% endif %}
         </div>
 
@@ -67,7 +66,7 @@
                 {% if mid == '' %}
                     <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
                 {% else %}
-                    <div class="yle_areena_player" data-id="{{ mid }}" data-article="{{ url }}"></div>
+                    <div class="yle_areena_player" data-id="{{ areena_mid }}" data-article="{{ areena_url }}"></div>
                     <script src="http://player.yle.fi/assets/js/embed.js"></script>
                 {% endif %}
             </div>
@@ -79,11 +78,17 @@
             {% if finna_url == '' %}
                 <p> Finnan kanta ei löytänyt vuotta :-(</p>
             {% else %}
-                <div class="finna"><a href="{{ finna_record }}"><img src="{{ finna_kuva }}" class="img-responsive"></a>
+                <div class="finna"><a href="{{ finna_record }}"><img class="img-responsive" src="{{ finna_kuva }}" alt="{{ finna_title }}" title="{{ finna_title }}"></a>
                 </div>
             {% endif %}
         </div>
-        <div class="col-sm-6">{{ url }}</div>
+        <div class="col-sm-6">
+			{% if presidentin_kuva == '' %}
+                <div class="presidentti"><p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p></div>
+            {% else %}
+                <div class="col-sm-6"><img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}"></div>
+            {% endif %}
+		</div>
     </div>
 
     <div class="row">
