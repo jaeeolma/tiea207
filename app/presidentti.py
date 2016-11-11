@@ -19,7 +19,7 @@ def hae_presidentti(year):
     if (1956 <= int(year) <= 1981 ):
         presidentin_kuva = 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Urho_Kaleva_Kekkonen.jpg'
     if (1982 <= int(year) <= 1993 ):
-        presidentin_kuva = 'https://upload.wikimedia.org/wikipedia/commons/d/da/Mauno_Koivisto.png'
+        presidentin_kuva = 'http://tietoasuomi.suntuubi.com/datafiles/gallery/3/Mauno%20Koivisto.jpg'
     if (1994 <= int(year) <= 1999 ):
         presidentin_kuva = 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Martti_Ahtisaari%2C_tidigare_president_Finland_och_mottagare_av_Nobels_fredrspris_%282%29.jpg'
     if (2000 <= int(year) <= 2011 ):

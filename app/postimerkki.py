@@ -30,5 +30,5 @@ def merkin_tiedot(url):
         for row in reader:
             if etsittava_url in row['kuvan_url']:
                 tiedot_list.append(row['merkin_nimi'])
-                tiedot_list.append(row['ilmestymispaiva'])
+                #tiedot_list.append(row['ilmestymispaiva'])
     return tiedot_list
