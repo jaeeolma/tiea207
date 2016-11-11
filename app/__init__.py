@@ -43,7 +43,7 @@ def hello_world():
         postimerkki_urlit.append('')
         postimerkki_url = ''
     else:
-        for x in range(0, 3):
+        for x in range(0, 4):
             postimerkki_url = random.choice(postimerkit)
             if (postimerkki_url not in postimerkki_urlit):
                 postimerkki_urlit.append(postimerkki_url)
