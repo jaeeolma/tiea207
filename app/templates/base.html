@@ -25,6 +25,10 @@
 		.col-sm-6 {
 			padding: 1%;
 		}
+		
+		#postimerkki {
+			padding: 0;
+		}
     </style>
 </head>
 
@@ -56,7 +60,7 @@
                 <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <img class="img-responsive" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}">
+                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
             {% endfor %}
             {% endif %}
         </div>
