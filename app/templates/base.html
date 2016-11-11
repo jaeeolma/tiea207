@@ -48,8 +48,13 @@
                 <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6"><img src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }} class="img-responsive""></div>
+                <div class="col-sm-6"><img src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}" class="img-responsive"></div>
             {% endfor %}
+            {% endif %}
+            {% if presidentin_kuva == '' %}
+                <div class="presidentti"><p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p></div>
+            {% else %}
+                <div class="col-sm-6"><img src="{{ presidentin_kuva }}" class="img-responsive"></div>
             {% endif %}
         </div>
 

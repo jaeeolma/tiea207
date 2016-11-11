@@ -5,6 +5,7 @@ from yle2 import get_video_url
 from finna import search_finna
 from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
+from presidentti import hae_presidentti
 import os
 import csv
 import random
@@ -56,9 +57,8 @@ def hello_world():
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
     finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
-    
 
-
+    presidentin_kuva = hae_presidentti(year)
 
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
@@ -70,7 +70,8 @@ def hello_world():
                            postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva,
                            year=year,
                            postimerkki_urlit = postimerkki_urlit,
-                           postimerkki_tiedot = postimerkki_tiedot)
+                           postimerkki_tiedot = postimerkki_tiedot,
+                           presidentin_kuva=presidentin_kuva)
 
 if __name__ == '__main__':
     app.run()
