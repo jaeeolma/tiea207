@@ -53,10 +53,10 @@
     <div class="row">
         <div class="col-sm-6">
             {% if postimerkki_url == '' %}
-                <div class="postimerkki"><p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p></div>
+                <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6"><img class="img-responsive" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
+                <img class="img-responsive" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}">
             {% endfor %}
             {% endif %}
         </div>
@@ -78,24 +78,24 @@
             {% if finna_url == '' %}
                 <p> Finnan kanta ei löytänyt vuotta :-(</p>
             {% else %}
-                <div class="finna"><a href="{{ finna_record }}"><img class="img-responsive" src="{{ finna_kuva }}" alt="{{ finna_title }}" title="{{ finna_title }}"></a>
-                </div>
+                <a href="{{ finna_record }}"><img class="img-responsive" src="{{ finna_kuva }}" alt="{{ finna_title }}" title="{{ finna_title }}"></a>
             {% endif %}
         </div>
         <div class="col-sm-6">
 			{% if presidentin_kuva == '' %}
-                <div class="presidentti"><p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p></div>
+                <p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p>
             {% else %}
-                <div class="col-sm-6"><img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}"></div>
+                <img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}">
             {% endif %}
 		</div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <p>Sivuston tekijät Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
-        </div>
+</div>
+</br>
+<div class="row">
+    <div class="col-sm-12">
+        <p>Sivuston tekijät Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
     </div>
 </div>
+	
 </body>
 </html>
