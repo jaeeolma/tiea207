@@ -56,6 +56,8 @@ def hello_world():
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
     finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
+    finna_title = finnaresult['title']
+    finna_source = finnaresult['building']
     
 
 
@@ -66,6 +68,8 @@ def hello_world():
                            mid=mid,
                            finna_kuva=finna_kuva,
                            finna_record = finna_record,
+                           finna_title = finna_title,
+                           finna_source = finna_source,
                            postimerkki_nimi=postimerkki_nimi,
                            postimerkki_ilmestymispaiva=postimerkki_ilmestymispaiva,
                            year=year,
