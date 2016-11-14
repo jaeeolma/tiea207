@@ -1,3 +1,4 @@
+#-*- coding: utf8 -*-
 from flask import Flask
 from flask import render_template, request
 from yle2 import get_video_list
