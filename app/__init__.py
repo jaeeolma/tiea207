@@ -7,7 +7,6 @@ from finna import search_finna
 from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
-from presidentti import hae_presidentin_nimi
 from paaministerit import hae_paaministeri
 import os
 import csv
@@ -60,10 +59,15 @@ def hello_world():
 
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
-    
 
-    presidentin_kuva = hae_presidentti(year)
-    presidentin_nimi = hae_presidentin_nimi(year)
+
+    presidentin_tiedot = hae_presidentti(year)
+    if len(presidentin_tiedot) == 0:
+        presidentin_nimi = ''
+        presidentin_kuva = ''
+    else:
+        presidentin_nimi = presidentin_tiedot[0]
+        presidentin_kuva = presidentin_tiedot[1]
 
     paaministerin_tiedot = hae_paaministeri(year)
     if len(paaministerin_tiedot) == 0:
