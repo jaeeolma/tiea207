@@ -7,6 +7,7 @@ from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
 from presidentti import hae_presidentin_nimi
+from paaministerit import hae_paaministeri
 import os
 import csv
 import random
@@ -63,6 +64,15 @@ def hello_world():
     presidentin_kuva = hae_presidentti(year)
     presidentin_nimi = hae_presidentin_nimi(year)
 
+    paaministerin_tiedot = hae_paaministeri(year)
+    if len(paaministerin_tiedot) == 0:
+        paaministeri_nimi = ''
+        paaministeri_url = ''
+    else:
+        paaministeri_nimi = paaministerin_tiedot[0]
+        paaministeri_url = paaministerin_tiedot[1]
+
+
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
                            areena_url=url,
@@ -75,7 +85,9 @@ def hello_world():
                            postimerkki_urlit = postimerkki_urlit,
                            postimerkki_tiedot = postimerkki_tiedot,
                            presidentin_kuva=presidentin_kuva,
-                           presidentin_nimi=presidentin_nimi)
+                           presidentin_nimi=presidentin_nimi,
+                           paaministeri_url=paaministeri_url,
+                           paaministeri_nimi=paaministeri_nimi)
 
 if __name__ == '__main__':
     app.run()
