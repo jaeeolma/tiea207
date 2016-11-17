@@ -7,87 +7,51 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- <link type="text/css" href="{{ url_for('static', filename='style.css') }}" /> -->
+    <!--<link type="css/text" href="{{ url_for('static', filename='style.css') }}" />-->
     <style>
-        .container-fluid .jumbotron {
-            padding-right: 15px;
-            padding-left: 15px;
-            border-radius: 6px;
-        }
-        
-        .jumbotron {
-            padding-top: 30px;
-            padding-bottom: 30px;
-            margin-bottom: 30px;
-            color: inherit;
-            background-color: #eee;
-        }
-        
-        .h1, h1 {
-            font-size: 36px;
-        }
-        
         .affix {
             top: 0;
             width: 100%;
         }
-
         .affix + .container-fluid {
             padding-top: 90px;
         }
         
         .navbar {
             z-index: 10;
-            padding: 1%;
-            margin-bottom: 20px;
-            border-radius: 4px;
         }
         
         .col-sm-6 {
-            padding: 1%;
+            padding: 0.5%;
         }
         
         #postimerkki {
             padding: 0;
         }
-        
-        @media screen and (min-width: 768px) .container .jumbotron, .container-fluid .jumbotron {
-            padding-right: 15px;
-            padding-left: 15px;
-            border-radius: 6px;
-        }
-        
-        @media screen and (min-width: 768px) .jumbotron .h1, .jumbotron h1 {
-            font-size: 42px;
-        }
-        
-        @media (min-width: 768px) .navbar {
-            border-radius: 4px;
-        }
     </style>
 </head>
 
 <body>
-<div class="container-fluid" id="otsikko" style="color:#000000;">
+<div class="container-fluid" style="height:200px;">
     <div class="jumbotron"><h1>SUOMEN VUOSIKATSAUS</h1></div>
 </div>
 
-<div class="container-fluid">
-    <div class="navbar navbar-inverse" data-spy="affix" data-offset-top="200">
-        <div class="col-sm-12">
-            <form action="{{ request.base_url }}" method="POST">
-                <div class="row" style="color:#FFFFFF;">Vuosi:
-                    <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
-                </div>
-                <div class="row">
-                    <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016"
-                        oninput="this.form.year.value=this.value"/>
-                    <input type="submit" name="laheta" value="Hae"/>
-                </div>
-            </form>
-        </div>
+
+<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="200">
+    <div class="col-sm-12">
+        <form action="{{ request.base_url }}" method="POST">
+            <div class="row" style="color:#FFFFFF;">Vuosi:
+                <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
+            </div>
+            <div class="row">
+                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016"
+                    oninput="this.form.year.value=this.value"/>
+                <input type="submit" name="laheta" value="Hae"/>
+            </div>
+        </form>
     </div>
 </div>
+
 
 <div class="container-fluid">
     <div class="row">
@@ -106,7 +70,6 @@
             {% endif %}
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-6">
             <div class="embed-responsive embed-responsive-16by9">
@@ -123,7 +86,7 @@
                 <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
+                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
             {% endfor %}
             {% endif %}
         </div>
