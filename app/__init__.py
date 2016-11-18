@@ -69,12 +69,12 @@ def hello_world():
 
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
-    
     chartID = 'vaesto'
     chart_type = 'bar'
     chart = {"renderTo": chartID, "type": chart_type}
     series = [{"name": 'Miehet', "data":get_male(year)},{"name":'Naiset', "data":get_female(year)}]
-    title = {"useHTML":"true", "text":'Suomen väestörakenne vuonna ' + str(year)}
+    #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
+    title = {"text":""}
     xAxis = [{"categories": AGE_GROUPS, "reversed":"true", "labels":{"step":"1"}},{"opposite":"false", "reversed":"true", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
     yAxis = {"title":{"text":""}}
     #plotOptions = {"series":{"stacking":"normal"}}
