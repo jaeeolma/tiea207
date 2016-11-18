@@ -5,7 +5,9 @@ import os
 
 AGE_GROUPS = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-']
 
-def get_male(year): 
+def get_male(year):
+    if '2016' in year:
+        year = '2015'
     path = os.path.join(os.path.dirname(__file__), '../data/vaesto_miehet.csv') 
     with open(path) as data:
         reader = csv.DictReader(data, delimiter=',')
@@ -24,7 +26,9 @@ def get_male(year):
     data.close()
     return tulokset
     
-def get_female(year): 
+def get_female(year):
+    if '2016' in year:
+        year = '2015'
     path = os.path.join(os.path.dirname(__file__), '../data/vaesto_naiset.csv') 
     with open(path) as data:
         reader = csv.DictReader(data, delimiter=',')
