@@ -1,8 +1,19 @@
 .affix {
     top: 0;
     width: 100%;
-  }
-  
+}
 .affix + .container-fluid {
-    padding-top: 70px;
-  }
+    padding-top: 90px;
+}
+
+.navbar {
+    z-index: 10;
+}
+
+.col-sm-6 {
+    padding: 0.5%;
+}
+
+#postimerkki {
+    padding: 0;
+}

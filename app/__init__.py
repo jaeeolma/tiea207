@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 #-*- coding: utf8 -*-   
 
+=======
+#-*- coding: utf8 -*-
+>>>>>>> origin/master
 from flask import Flask
 from flask import render_template, request, Blueprint
 from yle2 import get_video_list
@@ -8,9 +12,13 @@ from finna import search_finna
 from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
+<<<<<<< HEAD
 from presidentti import hae_presidentin_nimi
 from vaesto import *
 import chartkick
+=======
+from paaministerit import hae_paaministeri
+>>>>>>> origin/master
 import os
 import csv
 import random
@@ -69,6 +77,7 @@ def hello_world():
 
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
+<<<<<<< HEAD
     
     chartID = 'vaesto'
     chart_type = 'bar'
@@ -83,6 +92,26 @@ def hello_world():
     presidentin_nimi = hae_presidentin_nimi(year)
     
     #vaesto = combine(year)
+=======
+
+
+    presidentin_tiedot = hae_presidentti(year)
+    if len(presidentin_tiedot) == 0:
+        presidentin_nimi = ''
+        presidentin_kuva = ''
+    else:
+        presidentin_nimi = presidentin_tiedot[0]
+        presidentin_kuva = presidentin_tiedot[1]
+
+    paaministerin_tiedot = hae_paaministeri(year)
+    if len(paaministerin_tiedot) == 0:
+        paaministeri_nimi = ''
+        paaministeri_url = ''
+    else:
+        paaministeri_nimi = paaministerin_tiedot[0]
+        paaministeri_url = paaministerin_tiedot[1]
+
+>>>>>>> origin/master
 
         
     
@@ -106,7 +135,9 @@ def hello_world():
                            postimerkki_urlit = postimerkki_urlit,
                            postimerkki_tiedot = postimerkki_tiedot,
                            presidentin_kuva=presidentin_kuva,
-                           presidentin_nimi=presidentin_nimi)
+                           presidentin_nimi=presidentin_nimi,
+                           paaministeri_url=paaministeri_url,
+                           paaministeri_nimi=paaministeri_nimi)
 
 if __name__ == '__main__':
     app.run()

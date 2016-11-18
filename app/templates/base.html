@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,4 +129,127 @@
 </div>
 	
 </body>
-</html>
+</html>
+=======
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Suomen vuosikatsaus</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<link type="css/text" href="{{ url_for('static', filename='style.css') }}" />-->
+    <style>
+        .affix {
+            top: 0;
+            width: 100%;
+        }
+        .affix + .container-fluid {
+            padding-top: 90px;
+        }
+        
+        .navbar {
+            z-index: 10;
+        }
+        
+        .col-sm-6 {
+            padding: 0.5%;
+        }
+        
+        #postimerkki {
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid" style="height:200px;">
+    <div class="jumbotron"><h1>SUOMEN VUOSIKATSAUS</h1></div>
+</div>
+
+
+<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="200">
+    <div class="col-sm-12">
+        <form action="{{ request.base_url }}" method="POST">
+            <div class="row" style="color:#FFFFFF;">Vuosi:
+                <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
+            </div>
+            <div class="row">
+                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016"
+                    oninput="this.form.year.value=this.value"/>
+                <input type="submit" name="laheta" value="Hae"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            {% if presidentin_kuva == '' %}
+                <p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p>
+            {% else %}
+                <img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}">
+            {% endif %}
+        </div>
+        <div class="col-sm-6">
+            {% if paaministeri_url == '' %}
+                <p>Ei löytynyt pääministeriä hakemaltasi vuodelta :-(</p>
+            {% else %}
+                <img class="img-responsive" src="{{ paaministeri_url }}" alt="{{ paaministeri_nimi }}" title="{{ paaministeri_nimi }}">
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="embed-responsive embed-responsive-16by9">
+                {% if mid == '' %}
+                    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
+                {% else %}
+                    <div class="yle_areena_player" data-id="{{ areena_mid }}" data-article="{{ areena_url }}"></div>
+                    <script src="http://player.yle.fi/assets/js/embed.js"></script>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            {% if postimerkki_url == '' %}
+                <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
+            {% else %}
+            {% for merkki in postimerkki_urlit %}
+                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            {% if finna_url == '' %}
+                <p> Finnan kanta ei löytänyt vuotta :-(</p>
+            {% else %}
+                <a href="{{ finna_record }}"><img class="img-responsive" src="{{ finna_kuva }}" alt="{{ finna_title }}" title="{{ finna_title }}"></a>
+            {% endif %}
+        </div>
+        <div class="col-sm-6">
+            <!-- Tänne voit laittaa mitä haluat -->
+        </div>
+    </div>
+    
+</div>
+
+<br/>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Sivuston tekijät Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>
+>>>>>>> origin/master
