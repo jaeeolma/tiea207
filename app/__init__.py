@@ -10,7 +10,6 @@ from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
 from vaesto import *
-import chartkick
 from paaministerit import hae_paaministeri
 import os
 import csv
