@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-#-*- coding: utf8 -*-   
 
-=======
 #-*- coding: utf8 -*-
->>>>>>> origin/master
+
 from flask import Flask
 from flask import render_template, request, Blueprint
 from yle2 import get_video_list
@@ -12,13 +9,9 @@ from finna import search_finna
 from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
-<<<<<<< HEAD
-from presidentti import hae_presidentin_nimi
 from vaesto import *
 import chartkick
-=======
 from paaministerit import hae_paaministeri
->>>>>>> origin/master
 import os
 import csv
 import random
@@ -77,7 +70,6 @@ def hello_world():
 
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
-<<<<<<< HEAD
     
     chartID = 'vaesto'
     chart_type = 'bar'
@@ -88,11 +80,6 @@ def hello_world():
     yAxis = {"title":{"text":""}}
     plotOptions = {"series":{"stacking":"normal"}}
     tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
-    presidentin_kuva = hae_presidentti(year)
-    presidentin_nimi = hae_presidentin_nimi(year)
-    
-    #vaesto = combine(year)
-=======
 
 
     presidentin_tiedot = hae_presidentti(year)
@@ -110,9 +97,6 @@ def hello_world():
     else:
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
-
->>>>>>> origin/master
-
         
     
     return render_template('base.html',
