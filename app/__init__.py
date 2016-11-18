@@ -30,9 +30,9 @@ app = Flask(__name__)
 
 app.static_folder = 'static'
 
-ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(), static_url_path='/static')
-app.register_blueprint(ck, url_prefix='/ck')
-app.jinja_env.add_extension("chartkick.ext.charts")
+#ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(), static_url_path='/static')
+#app.register_blueprint(ck, url_prefix='/ck')
+#app.jinja_env.add_extension("chartkick.ext.charts")
 
 @app.route('/', methods=['POST', 'GET'])
 def hello_world():
