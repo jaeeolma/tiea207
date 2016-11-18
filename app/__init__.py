@@ -1,5 +1,7 @@
+#-*- coding: utf8 -*-   
+
 from flask import Flask
-from flask import render_template, request
+from flask import render_template, request, Blueprint
 from yle2 import get_video_list
 from yle2 import get_video_url
 from finna import search_finna
@@ -7,21 +9,30 @@ from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
 from presidentti import hae_presidentin_nimi
+from vaesto import *
+import chartkick
 import os
 import csv
 import random
 import sys
 import urllib
+
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 FINNA_RECORD_URL='https://www.finna.fi/Record/'
 FINNA_IMAGE_URL='https://api.finna.fi'
 
+AGE_GROUPS = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-']
+
+
 app = Flask(__name__)
 
 app.static_folder = 'static'
 
+ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(), static_url_path='/static')
+app.register_blueprint(ck, url_prefix='/ck')
+app.jinja_env.add_extension("chartkick.ext.charts")
 
 @app.route('/', methods=['POST', 'GET'])
 def hello_world():
@@ -59,10 +70,22 @@ def hello_world():
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
     
-
+    chartID = 'vaesto'
+    chart_type = 'bar'
+    chart = {"renderTo": chartID, "type": chart_type}
+    series = [{"name": 'Miehet', "data":get_male(year)},{"name":'Naiset', "data":get_female(year)}]
+    title = {"useHTML":"true", "text":'Suomen väestörakenne vuonna ' + str(year)}
+    xAxis = [{"categories": AGE_GROUPS, "reversed":"false", "labels":{"step":"1"}},{"opposite":"true", "reversed":"false", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
+    yAxis = {"title":{"text":""}}
+    plotOptions = {"series":{"stacking":"normal"}}
+    tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
     presidentin_kuva = hae_presidentti(year)
     presidentin_nimi = hae_presidentin_nimi(year)
+    
+    #vaesto = combine(year)
 
+        
+    
     return render_template('base.html',
                            postimerkki_url=postimerkki_url,
                            areena_url=url,
@@ -72,6 +95,14 @@ def hello_world():
                            finna_title = finna_title,
                            finna_source = finna_source,
                            year=year,
+                           chartID = chartID,
+                           chart = chart,
+                           series = series,
+                           title = title,
+                           xAxis = xAxis,
+                           yAxis = yAxis,
+                           plotOptions = plotOptions,
+                           tooltip = tooltip,
                            postimerkki_urlit = postimerkki_urlit,
                            postimerkki_tiedot = postimerkki_tiedot,
                            presidentin_kuva=presidentin_kuva,
