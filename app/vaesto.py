@@ -16,11 +16,11 @@ def get_male(year):
         for row in reader:
             if year in row['Vuosi']:
                 i = 0
-                for column in reader.fieldnames:
+                for column in reversed(reader.fieldnames):
                     count = row[column]
                     count = int(count)
                     tulokset.append(count)
-        del tulokset[0]
+        del tulokset[len(tulokset)-1]
         #print(tulokset)
         
     data.close()
@@ -37,11 +37,11 @@ def get_female(year):
         for row in reader:
             if year in row['Vuosi']:
                 i = 0
-                for column in reader.fieldnames:    
+                for column in reversed(reader.fieldnames):
                     count = row[column]
                     count = int(count)
                     tulokset.append(count)
-        del tulokset[0]
+        del tulokset[len(tulokset)-1]
         #print(tulokset)
     data.close()
     return tulokset
