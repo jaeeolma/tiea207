@@ -12,17 +12,17 @@ def get_video_list(year):
     with open(path) as media:
         reader = csv.DictReader(media, delimiter=',')
         #year = input('Anna vuosi: ')
-        tulokset = []
+        results = []
         for row in reader:
             if row['EMBED'] == '1' and year in row['FIRSTRUN']:
-                tulokset.append(row['MID'])
+                results.append(row['MID'])
         
         #try:
-        #   mid = random.choice(tulokset)
+        #   mid = random.choice(results)
         #except:
         #   mid = ''
     media.close()
-    return tulokset
+    return results
     
 def get_video_url(mid): 
 #Hakee mediaid:tä vastaavan artikkeliurl:n

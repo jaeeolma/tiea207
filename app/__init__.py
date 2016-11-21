@@ -40,7 +40,8 @@ def hello_world():
         year = request.form['year']
     except:
         year = '1962'
-
+        
+    #Elävän arkiston tulokset
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
         mid = ''
@@ -48,7 +49,8 @@ def hello_world():
     else:
         mid = random.choice(tulokset)
         url = get_video_url(mid)
-
+        
+    #postimerkkien tulokset
     postimerkit = merkin_url(year)
     postimerkki_urlit = []
     postimerkki_tiedot = []
@@ -62,13 +64,15 @@ def hello_world():
                 postimerkki_urlit.append(postimerkki_url)
                 url_tiedot = merkin_tiedot(postimerkki_url)
                 postimerkki_tiedot = postimerkki_tiedot + url_tiedot
-        
+                
+    #finnan tulokset
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
     finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
-
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
+    
+    #väestötaulukon luominen
     chartID = 'vaesto'
     chart_type = 'bar'
     chart = {"renderTo": chartID, "type": chart_type}
@@ -76,13 +80,13 @@ def hello_world():
     #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
     title = {"text":""}
     xAxis = [{"categories": AGE_GROUPS, "reversed":"true", "labels":{"step":"1"}},{"opposite":"false", "reversed":"true", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
-    yAxis = {"title":{"text":""}}
+    yAxis = {"title":{"text":"Kansalaisia " + get_population(year)}}
     #plotOptions = {"series":{"stacking":"normal"}}
     plotOptions = {}
     tooltip = {}
     #tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
 
-
+    #presidenttihaku
     presidentin_tiedot = hae_presidentti(year)
     if len(presidentin_tiedot) == 0:
         presidentin_nimi = ''
@@ -91,6 +95,7 @@ def hello_world():
         presidentin_nimi = presidentin_tiedot[0]
         presidentin_kuva = presidentin_tiedot[1]
 
+    #pääministerihaku
     paaministerin_tiedot = hae_paaministeri(year)
     if len(paaministerin_tiedot) == 0:
         paaministeri_nimi = ''
