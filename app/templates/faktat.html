@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="row">
         <div class="col-sm-6">
             <h3>presidenttinä toimi {{presidentin_nimi}}</h3>
             {% if presidentin_kuva == '' %}
@@ -16,6 +17,7 @@
                 <img class="img-responsive" src="{{ paaministeri_url }}" alt="{{ paaministeri_nimi }}" title="{{ paaministeri_nimi }}">
             {% endif %}
         </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-6">

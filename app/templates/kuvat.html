@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="row">
         <div class="col-sm-6">
             <h3>otettiin tällainen kuva</h3>
             {% if finna_url == '' %}
@@ -18,4 +19,5 @@
             {% endfor %}
             {% endif %}
         </div>
+    </div>
 {% endblock %}
