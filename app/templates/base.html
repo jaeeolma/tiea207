@@ -35,76 +35,8 @@
 <div class="container">
     <h2>Vuonna {{year}}</h2>
     <div class="row">
-        <div class="col-sm-6">
-            <h3>presidenttinä toimi {{presidentin_nimi}}</h3>
-            {% if presidentin_kuva == '' %}
-                <p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p>
-            {% else %}
-                <img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}">
-            {% endif %}
-        </div>
-        <div class="col-sm-6">
-            <h3>pääministerinä toimi {{paaministeri_nimi}}</h3>
-            {% if paaministeri_url == '' %}
-                <p>Ei löytynyt pääministeriä hakemaltasi vuodelta :-(</p>
-            {% else %}
-                <img class="img-responsive" src="{{ paaministeri_url }}" alt="{{ paaministeri_nimi }}" title="{{ paaministeri_nimi }}">
-            {% endif %}
-        </div>
+        {% block content %}{% endblock %}
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>julkaistiin mm. tämä video</h3>
-            <div class="embed-responsive embed-responsive-16by9">
-                {% if mid == '' %}
-                    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
-                {% else %}
-                    <div class="yle_areena_player" data-id="{{ areena_mid }}" data-article="{{ areena_url }}"></div>
-                    <script type="text/javascript" src="http://player.yle.fi/assets/js/embed.js"></script>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <h3>julkaistiin mm. nämä postimerkit</h3>
-            {% if postimerkki_url == '' %}
-                <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
-            {% else %}
-            {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[0] }}"></div>
-            {% endfor %}
-            {% endif %}
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>otettiin tällainen kuva</h3>
-            {% if finna_url == '' %}
-                <p> Finnan kanta ei löytänyt vuotta :-(</p>
-            {% else %}
-                <a href="{{ finna_record }}"><img class="img-responsive" src="{{ finna_kuva }}" alt="{{ finna_title }}" title="{{ finna_title }}"></a>
-            {% endif %}
-        </div>
-        <div class="col-sm-6">
-            <h3>Suomen väestörakenne oli tällainen</h3>
-            <div id={{ chartID|safe }} class="chart"></div>
-            
-            <script type="text/javascript">
-                var chart_id = {{ chartID|safe }}
-                var series = {{ series|safe }}
-                var title = {{ title|safe }}
-                var xAxis = {{ xAxis|safe }}
-                var yAxis = {{ yAxis|safe }}
-                var chart = {{ chart|safe }}
-                var plotOptions = {{ plotOptions|safe }}
-                var tooltip = {{ tooltip|safe  }}
-            </script>
-                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-                <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-                <script type="text/javascript" src="../static/main.js" charset="UTF-8"></script>
-        </div>
-    </div>
-    
 </div>
 
 <br/>

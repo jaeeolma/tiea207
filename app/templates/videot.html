@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="col-sm-6">
+            <h3>julkaistiin mm. tämä video</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+                {% if mid == '' %}
+                    <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
+                {% else %}
+                    <div class="yle_areena_player" data-id="{{ areena_mid }}" data-article="{{ areena_url }}"></div>
+                    <script type="text/javascript" src="http://player.yle.fi/assets/js/embed.js"></script>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}

@@ -34,7 +34,7 @@ app.static_folder = 'static'
 #app.register_blueprint(ck, url_prefix='/ck')
 #app.jinja_env.add_extension("chartkick.ext.charts")
 
-@app.route('/faktat', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def faktat():
     try:
         year = request.form['year']
@@ -73,7 +73,8 @@ def faktat():
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
 
-    return render_template('base.html',
+
+    return render_template('faktat.html',
                            year=year,
                            chartID = chartID,
                            chart = chart,
@@ -109,17 +110,22 @@ def kuvat():
     if len(postimerkit) == 0:
         postimerkki_urlit.append('')
     else:
-       # for x in range(0, 14):
-         for x in range(len(postimerkit)):
-           # postimerkki_url = random.choice(postimerkit)
-           # if (postimerkki_url not in postimerkki_urlit):
-           #     postimerkki_urlit.append(postimerkki_url)
-                url_tiedot = merkin_tiedot(postimerkit[x])
+        for x in range(0, 4):
+            postimerkki_url = random.choice(postimerkit)
+            if (postimerkki_url not in postimerkki_urlit):
+                postimerkki_urlit.append(postimerkki_url)
+                url_tiedot = merkin_tiedot(postimerkki_url)
                 postimerkki_tiedot = postimerkki_tiedot + url_tiedot
 
+       # for x in range(len(postimerkit)):
+       #     url_tiedot = merkin_tiedot(postimerkit[x])
+       #     postimerkki_tiedot = postimerkki_tiedot + url_tiedot
+       #     url_tiedot = merkin_tiedot(postimerkit[x])
+
+
     return render_template('kuvat.html',
-                           #postimerkki_urlit=postimerkki_urlit,
-                           postimerkit_urlit=postimerkit,
+                           postimerkki_urlit=postimerkki_urlit,
+                           #postimerkit_urlit=postimerkit,
                            postimerkki_tiedot=postimerkki_tiedot,
                            finna_kuva=finna_kuva,
                            finna_record=finna_record,
