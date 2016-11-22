@@ -5,6 +5,8 @@ import os
 
 AGE_GROUPS = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-']
 
+#hakee taulusta väestöjakaumat ja palauttaa ne listoina
+
 def get_male(year):
     if '2016' in year:
         year = '2015'
@@ -12,19 +14,18 @@ def get_male(year):
     with open(path) as data:
         reader = csv.DictReader(data, delimiter=',')
         
-        tulokset = []
+        results = []
         for row in reader:
             if year in row['Vuosi']:
                 i = 0
-                for column in reader.fieldnames:
+                for column in reversed(reader.fieldnames):
                     count = row[column]
                     count = int(count)
-                    tulokset.append(count)
-        del tulokset[0]
-        #print(tulokset)
+                    results.append(count)
+        del results[len(results)-1]
         
     data.close()
-    return tulokset
+    return results
     
 def get_female(year):
     if '2016' in year:
@@ -33,41 +34,25 @@ def get_female(year):
     with open(path) as data:
         reader = csv.DictReader(data, delimiter=',')
         
-        tulokset = []
+        results = []
         for row in reader:
             if year in row['Vuosi']:
                 i = 0
-                for column in reader.fieldnames:    
+                for column in reversed(reader.fieldnames):
                     count = row[column]
                     count = int(count)
-                    tulokset.append(count)
-        del tulokset[0]
-        #print(tulokset)
+                    results.append(count)
+        del results[len(results)-1]
     data.close()
-    return tulokset
-
-def combine(year):
-    male = get_male(year)
-    female = get_female(year)
-    i = 0
-    vaesto = []
-    for id in AGE_GROUPS:
-        cell = []
-        cell.append(id)
-        cell.append(male[i])
-        cell.append(female[i])
-        vaesto.append(cell)
-        i = i+1
-    #i = 0
-    #for id in AGE_GROUPS:
-     #   cell = []
-      #  cell.append(id)
-       # #cell.append(male[i])
-        #cell.append(female[i])
-        #vaesto.append(cell)
-        #i = i+1
-    return vaesto
+    return results
    
-#year = str(input('Anna vuosi: '))
-#get_male(year)
-#get_female(year)
+def get_population(year):
+    path = os.path.join(os.path.dirname(__file__), '../data/vakimaara.csv')
+    with open(path) as data:
+        reader = csv.DictReader(data, delimiter=',')
+        for row in reader:
+            if year in row['Vuosi']:
+                result = row['Väkiluku']
+                break
+    data.close()
+    return result

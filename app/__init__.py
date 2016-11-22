@@ -23,7 +23,7 @@ sys.setdefaultencoding("utf-8")
 FINNA_RECORD_URL='https://www.finna.fi/Record/'
 FINNA_IMAGE_URL='https://api.finna.fi'
 
-AGE_GROUPS = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85-']
+AGE_GROUPS = ['85-', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9', '0-4']
 
 
 app = Flask(__name__)
@@ -40,7 +40,8 @@ def faktat():
         year = request.form['year']
     except:
         year = '1962'
-
+    
+    #väestötaulukon luominen
     chartID = 'vaesto'
     chart_type = 'bar'
     chart = {"renderTo": chartID, "type": chart_type}
@@ -48,13 +49,13 @@ def faktat():
     #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
     title = {"text":""}
     xAxis = [{"categories": AGE_GROUPS, "reversed":"true", "labels":{"step":"1"}},{"opposite":"false", "reversed":"true", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
-    yAxis = {"title":{"text":""}}
+    yAxis = {"title":{"text":"Kansalaisia " + get_population(year)}}
     #plotOptions = {"series":{"stacking":"normal"}}
     plotOptions = {}
     tooltip = {}
     #tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
 
-
+    #presidenttihaku
     presidentin_tiedot = hae_presidentti(year)
     if len(presidentin_tiedot) == 0:
         presidentin_nimi = ''
@@ -63,6 +64,7 @@ def faktat():
         presidentin_nimi = presidentin_tiedot[0]
         presidentin_kuva = presidentin_tiedot[1]
 
+    #pääministerihaku
     paaministerin_tiedot = hae_paaministeri(year)
     if len(paaministerin_tiedot) == 0:
         paaministeri_nimi = ''
@@ -70,8 +72,7 @@ def faktat():
     else:
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
-        
-    
+
     return render_template('base.html',
                            year=year,
                            chartID = chartID,
@@ -94,12 +95,14 @@ def kuvat():
     except:
         year = '1962'
 
+    #finnan tulokset
     finnaresult = search_finna(year)
     finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
     finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
     finna_title = finnaresult['title']
     finna_source = finnaresult['building']
 
+    # postimerkkien tulokset
     postimerkit = merkin_url(year)
     postimerkki_urlit = []
     postimerkki_tiedot = []
@@ -113,7 +116,6 @@ def kuvat():
            #     postimerkki_urlit.append(postimerkki_url)
                 url_tiedot = merkin_tiedot(postimerkit[x])
                 postimerkki_tiedot = postimerkki_tiedot + url_tiedot
-
 
     return render_template('kuvat.html',
                            #postimerkki_urlit=postimerkki_urlit,
@@ -132,6 +134,7 @@ def videot():
     except:
         year = '1962'
 
+    #Elävän arkiston tulokset
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
         mid = ''
@@ -140,11 +143,10 @@ def videot():
         mid = random.choice(tulokset)
         url = get_video_url(mid)
 
-
     return render_template('videot.html',
                            areena_url=url,
                            areena_mid=mid,
                            year=year)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

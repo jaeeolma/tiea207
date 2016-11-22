@@ -11,12 +11,12 @@
 </head>
 
 <body>
-<div class="container-fluid" style="height:200px;">
-    <div class="jumbotron"><h1>SUOMEN VUOSIKATSAUS</h1></div>
+<div class="container" style="height:100px;">
+    <h1 class="text-center">SUOMEN VUOSIKATSAUS</h1>
 </div>
 
 
-<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="200">
+<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
     <div class="col-sm-12">
         <form action="{{ request.base_url }}" method="POST">
             <div class="row" style="color:#FFFFFF;"><p>Vuosi:</p>
@@ -32,9 +32,11 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="container">
+    <h2>Vuonna {{year}}</h2>
     <div class="row">
         <div class="col-sm-6">
+            <h3>presidenttinä toimi {{presidentin_nimi}}</h3>
             {% if presidentin_kuva == '' %}
                 <p>Ei löytynyt presidenttiä hakemaltasi vuodelta :-(</p>
             {% else %}
@@ -42,6 +44,7 @@
             {% endif %}
         </div>
         <div class="col-sm-6">
+            <h3>pääministerinä toimi {{paaministeri_nimi}}</h3>
             {% if paaministeri_url == '' %}
                 <p>Ei löytynyt pääministeriä hakemaltasi vuodelta :-(</p>
             {% else %}
@@ -51,6 +54,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
+            <h3>julkaistiin mm. tämä video</h3>
             <div class="embed-responsive embed-responsive-16by9">
                 {% if mid == '' %}
                     <p>Ei löytynyt videota hakemaltasi vuodelta :-(</p>
@@ -61,6 +65,7 @@
             </div>
         </div>
         <div class="col-sm-6">
+            <h3>julkaistiin mm. nämä postimerkit</h3>
             {% if postimerkki_url == '' %}
                 <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
             {% else %}
@@ -73,6 +78,7 @@
     
     <div class="row">
         <div class="col-sm-6">
+            <h3>otettiin tällainen kuva</h3>
             {% if finna_url == '' %}
                 <p> Finnan kanta ei löytänyt vuotta :-(</p>
             {% else %}
@@ -80,7 +86,7 @@
             {% endif %}
         </div>
         <div class="col-sm-6">
-            <h3>Suomen väestörakenne vuonna {{ year }}</h3>
+            <h3>Suomen väestörakenne oli tällainen</h3>
             <div id={{ chartID|safe }} class="chart"></div>
             
             <script type="text/javascript">

@@ -2,8 +2,8 @@
     top: 0;
     width: 100%;
 }
-.affix + .container-fluid {
-    padding-top: 90px;
+.affix + .container {
+      padding-top: 70px;
 }
 
 .navbar {
@@ -17,3 +17,6 @@
 #postimerkki {
     padding: 0;
 }
+
+
+
