@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>otettiin tällainen kuva</h3>
+            {% if finna_url == '' %}
+                <p> Finnan kanta ei löytänyt vuotta :-(</p>
+            {% else %}
+                <a href="{{ finna_record }}"><img class="img-responsive" src="{{ finna_kuva }}" alt="{{ finna_title }}" title="{{ finna_title }}"></a>
+            {% endif %}
+        </div>
+        <div class="col-sm-6">
+            <h3>julkaistiin mm. nämä postimerkit</h3>
+            {% if postimerkki_url == '' %}
+                <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
+            {% else %}
+            {% for merkki in postimerkki_urlit %}
+                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[loop.index - 1] }}"></div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

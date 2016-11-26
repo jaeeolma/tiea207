@@ -35,42 +35,11 @@ app.static_folder = 'static'
 #app.jinja_env.add_extension("chartkick.ext.charts")
 
 @app.route('/', methods=['POST', 'GET'])
-def hello_world():
+def faktat():
     try:
         year = request.form['year']
     except:
         year = '1962'
-        
-    #Elävän arkiston tulokset
-    tulokset = get_video_list(year)
-    if len(tulokset) == 0:
-        mid = ''
-        url = ''
-    else:
-        mid = random.choice(tulokset)
-        url = get_video_url(mid)
-        
-    #postimerkkien tulokset
-    postimerkit = merkin_url(year)
-    postimerkki_urlit = []
-    postimerkki_tiedot = []
-    if len(postimerkit) == 0:
-        postimerkki_urlit.append('')
-        postimerkki_url = ''
-    else:
-        for x in range(0, 4):
-            postimerkki_url = random.choice(postimerkit)
-            if (postimerkki_url not in postimerkki_urlit):
-                postimerkki_urlit.append(postimerkki_url)
-                url_tiedot = merkin_tiedot(postimerkki_url)
-                postimerkki_tiedot = postimerkki_tiedot + url_tiedot
-                
-    #finnan tulokset
-    finnaresult = search_finna(year)
-    finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
-    finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
-    finna_title = finnaresult['title']
-    finna_source = finnaresult['building']
     
     #väestötaulukon luominen
     chartID = 'vaesto'
@@ -103,16 +72,9 @@ def hello_world():
     else:
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
-        
-    
-    return render_template('base.html',
-                           postimerkki_url=postimerkki_url,
-                           areena_url=url,
-                           areena_mid=mid,
-                           finna_kuva=finna_kuva,
-                           finna_record = finna_record,
-                           finna_title = finna_title,
-                           finna_source = finna_source,
+
+
+    return render_template('faktat.html',
                            year=year,
                            chartID = chartID,
                            chart = chart,
@@ -122,13 +84,12 @@ def hello_world():
                            yAxis = yAxis,
                            plotOptions = plotOptions,
                            tooltip = tooltip,
-                           postimerkki_urlit = postimerkki_urlit,
-                           postimerkki_tiedot = postimerkki_tiedot,
                            presidentin_kuva=presidentin_kuva,
                            presidentin_nimi=presidentin_nimi,
                            paaministeri_url=paaministeri_url,
                            paaministeri_nimi=paaministeri_nimi)
 
+<<<<<<< HEAD
 @app.route('/pelle', methods=['GET'])
 def pelle():
     pellet = ['26-20232', '26-23794', '26-23771', '26-22033', '26-20223', '26-47064', '26-47079', '26-96928', '26-20226', '26-20209', '26-20220', '26-4144']
@@ -141,3 +102,71 @@ if __name__ == '__main__':
     app.run()
 
     
+=======
+@app.route('/kuvat', methods=['POST', 'GET'])
+def kuvat():
+    try:
+        year = request.form['year']
+    except:
+        year = '1962'
+
+    #finnan tulokset
+    finnaresult = search_finna(year)
+    finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
+    finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
+    finna_title = finnaresult['title']
+    finna_source = finnaresult['building']
+
+    # postimerkkien tulokset
+    postimerkit = merkin_url(year)
+    postimerkki_urlit = []
+    postimerkki_tiedot = []
+    if len(postimerkit) == 0:
+        postimerkki_urlit.append('')
+    else:
+        for x in range(len(postimerkit)):
+            url_tiedot = merkin_tiedot(postimerkit[x])
+            postimerkki_tiedot = postimerkki_tiedot + url_tiedot
+
+       # for x in range(0, 4):
+       #     postimerkki_url = random.choice(postimerkit)
+       #     if (postimerkki_url not in postimerkki_urlit):
+       #         postimerkki_urlit.append(postimerkki_url)
+       #         url_tiedot = merkin_tiedot(postimerkki_url)
+       #         postimerkki_tiedot = postimerkki_tiedot + url_tiedot
+
+
+    return render_template('kuvat.html',
+                           #postimerkki_urlit=postimerkki_urlit,
+                           postimerkki_urlit=postimerkit,
+                           postimerkki_tiedot=postimerkki_tiedot,
+                           finna_kuva=finna_kuva,
+                           finna_record=finna_record,
+                           finna_title=finna_title,
+                           finna_source=finna_source,
+                           year=year)
+
+@app.route('/videot', methods=['POST', 'GET'])
+def videot():
+    try:
+        year = request.form['year']
+    except:
+        year = '1962'
+
+    #Elävän arkiston tulokset
+    tulokset = get_video_list(year)
+    if len(tulokset) == 0:
+        mid = ''
+        url = ''
+    else:
+        mid = random.choice(tulokset)
+        url = get_video_url(mid)
+
+    return render_template('videot.html',
+                           areena_url=url,
+                           areena_mid=mid,
+                           year=year)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+>>>>>>> origin/master
