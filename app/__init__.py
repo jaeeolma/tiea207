@@ -89,20 +89,6 @@ def faktat():
                            paaministeri_url=paaministeri_url,
                            paaministeri_nimi=paaministeri_nimi)
 
-<<<<<<< HEAD
-@app.route('/pelle', methods=['GET'])
-def pelle():
-    pellet = ['26-20232', '26-23794', '26-23771', '26-22033', '26-20223', '26-47064', '26-47079', '26-96928', '26-20226', '26-20209', '26-20220', '26-4144']
-    mid = random.choice(pellet)
-    url = get_video_url(mid)
-    
-    return render_template('pelle.html', areena_url=url, areena_mid=mid)
-                           
-if __name__ == '__main__':
-    app.run()
-
-    
-=======
 @app.route('/kuvat', methods=['POST', 'GET'])
 def kuvat():
     try:
@@ -167,6 +153,19 @@ def videot():
                            areena_mid=mid,
                            year=year)
 
+                           
+@app.route('/pelle', methods=['GET'])
+def pelle():
+    pellet = ['26-20232', '26-23794', '26-23771', '26-22033', '26-20223', '26-47064', '26-47079', '26-96928', '26-20226', '26-20209', '26-20220', '26-4144']
+    mid = random.choice(pellet)
+    url = get_video_url(mid)
+    
+    return render_template('pelle.html', areena_url=url, areena_mid=mid)
+                           
+if __name__ == '__main__':
+    app.run()
+
+
+                           
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> origin/master
