@@ -34,6 +34,18 @@ app.static_folder = 'static'
 #app.register_blueprint(ck, url_prefix='/ck')
 #app.jinja_env.add_extension("chartkick.ext.charts")
 
+@app.before_first_request
+def update_files():
+    articles = 'http://elavaarkisto.kokeile.yle.fi/data/articles.csv'
+    mediaarticle = 'http://elavaarkisto.kokeile.yle.fi/data/media-article.csv'
+    media = 'http://elavaarkisto.kokeile.yle.fi/data/media.csv'
+    path = os.path.join(os.path.dirname(__file__), '../data/articles.csv')
+    urllib.urlretrieve(articles, path)
+    path = os.path.join(os.path.dirname(__file__), '../data/media-article.csv')
+    urllib.urlretrieve(mediaarticle, path)
+    path = os.path.join(os.path.dirname(__file__), '../data/media.csv')
+    urllib.urlretrieve(media, path)
+
 @app.route('/', methods=['POST', 'GET'])
 def faktat():
     try:
