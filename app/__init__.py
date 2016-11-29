@@ -173,9 +173,9 @@ def pelle():
     url = get_video_url(mid)
     
     return render_template('pelle.html', areena_url=url, areena_mid=mid)
-                           
-if __name__ == '__main__':
-    app.run()
+    
+#if __name__ == '__main__':
+#    app.run()
 
 
                            
