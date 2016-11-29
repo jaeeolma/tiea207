@@ -108,13 +108,6 @@ def kuvat():
     except:
         year = '1962'
 
-    #finnan tulokset
-    finnaresult = search_finna(year)
-    finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
-    finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
-    finna_title = finnaresult['title']
-    finna_source = finnaresult['building']
-
     # postimerkkien tulokset
     postimerkit = merkin_url(year)
     postimerkki_urlit = []
@@ -133,15 +126,31 @@ def kuvat():
        #         url_tiedot = merkin_tiedot(postimerkki_url)
        #         postimerkki_tiedot = postimerkki_tiedot + url_tiedot
 
+    finna_kuvat = []
+    finna_records = []
+    finna_titles = []
+    finna_sources = []
+    #finnan tulokset
+    finnaresult = search_finna(year)
+    for x in range(0, 5):
+        finna_kuva = FINNA_IMAGE_URL + random.choice(finnaresult[x]['image'])
+        if (finna_kuva not in finna_kuvat):
+            finna_kuvat.append(FINNA_IMAGE_URL + finnaresult[x]['image'])
+            finna_records.append(FINNA_RECORD_URL + urllib.quote(finnaresult[x]['id']))
+            finna_titles.append(finnaresult[x]['title'])
+            finna_sources.append(finnaresult[x]['building'])
+        else:
+            x + 1
+
 
     return render_template('kuvat.html',
                            #postimerkki_urlit=postimerkki_urlit,
                            postimerkki_urlit=postimerkit,
                            postimerkki_tiedot=postimerkki_tiedot,
-                           finna_kuva=finna_kuva,
-                           finna_record=finna_record,
-                           finna_title=finna_title,
-                           finna_source=finna_source,
+                           finna_kuva=finna_kuvat,
+                           finna_record=finna_records,
+                           finna_title=finna_titles,
+                           finna_source=finna_sources,
                            year=year)
 
 @app.route('/videot', methods=['POST', 'GET'])
