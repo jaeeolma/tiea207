@@ -183,10 +183,15 @@ def pelle():
     
     return render_template('pelle.html', areena_url=url, areena_mid=mid)
     
-#if __name__ == '__main__':
-#    app.run()
+@app.route('/about', methods=['POST', 'GET'])
+def about():
+    try:
+        year = request.form['year']
+    except:
+        year = '1962'
+        
+    return render_template('about.html', year=year)
 
 
-                           
 if __name__ == '__main__':
     app.run(debug=True)

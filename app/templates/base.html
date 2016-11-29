@@ -7,16 +7,29 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        // With JQuery
+        $("#ex6").slider();
+        $("#ex6").on("slide", function(slideEvt) {
+            $("#ex6SliderVal").text(slideEvt.value);
+        });
+
+        // Without JQuery
+        var slider = new Slider("#ex6");
+        slider.on("slide", function(slideEvt) {
+            $("#ex6SliderVal").text(slideEvt.value);
+        });
+    </script>
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
 </head>
 
 <body>
-<div id="otsikko" class="container" style="height:100px;">
+<div class="container" id="otsikko" style="height:100px;">
     <h1 class="text-center">SUOMEN VUOSIKATSAUS</h1>
 </div>
 
 
-<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
+<div id="navi" class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
     <div class="col-sm-12">
         <form action="{{ request.base_url }}" method="POST">
             <div class="row" style="color:#FFFFFF;"><p>Vuosi:</p>
@@ -29,21 +42,14 @@
             </div>
         </form>
     </div>
-    <div id="valilehdet" class="col-sm-12">
-        <ul>
-            <li><a class="active" href="/">Faktat</a></li>
-            <li><a href="videot">Videot</a></li>
-            <li><a href="kuvat">Kuvat</a></li>
-            <li id ="about"><a href="ohje">Ohje</a></li>
-            <li id ="about"><a href="about">Tiedot</a></li>
-        </ul>
-    </div>
+    {% block nav %}{% endblock %}
 </div>
 
 
 <div class="container">
     <h2>Vuonna {{year}}</h2>
         {% block content %}{% endblock %}
+        {% block ohjeModal %}{% endblock %}
 </div>
     
 </body>
