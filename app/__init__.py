@@ -126,19 +126,23 @@ def kuvat():
        #         url_tiedot = merkin_tiedot(postimerkki_url)
        #         postimerkki_tiedot = postimerkki_tiedot + url_tiedot
 
+    #finnan tulokset
     finna_kuvat = []
     finna_records = []
     finna_titles = []
     finna_sources = []
-    #finnan tulokset
-    finnaresult = search_finna(year)
-    for x in range(0, 5):
-        finna_kuva = FINNA_IMAGE_URL + random.choice(finnaresult[x]['image'])
-        if (finna_kuva not in finna_kuvat):
-            finna_kuvat.append(FINNA_IMAGE_URL + finnaresult[x]['image'])
-            finna_records.append(FINNA_RECORD_URL + urllib.quote(finnaresult[x]['id']))
-            finna_titles.append(finnaresult[x]['title'])
-            finna_sources.append(finnaresult[x]['building'])
+    finnaresult_list = search_finna(year)
+    #finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
+    #finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
+    #finna_title = finnaresult['title']
+    #finna_source = finnaresult['building']
+    for x in range((len(postimerkit)/4)+1):
+        finnaresult = random.choice(finnaresult_list)
+        if (finnaresult not in finna_kuvat):
+            finna_kuvat.append(FINNA_IMAGE_URL + finnaresult['image'])
+            finna_records.append(FINNA_RECORD_URL + urllib.quote(finnaresult['id']))
+            finna_titles.append(finnaresult['title'])
+            finna_sources.append(finnaresult['building'])
         else:
             x + 1
 
