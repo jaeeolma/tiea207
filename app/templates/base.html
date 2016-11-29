@@ -7,6 +7,19 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        // With JQuery
+        $("#ex6").slider();
+        $("#ex6").on("slide", function(slideEvt) {
+            $("#ex6SliderVal").text(slideEvt.value);
+        });
+
+        // Without JQuery
+        var slider = new Slider("#ex6");
+        slider.on("slide", function(slideEvt) {
+            $("#ex6SliderVal").text(slideEvt.value);
+        });
+    </script>
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
 </head>
 
@@ -16,7 +29,7 @@
 </div>
 
 
-<div class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
+<div id="navi" class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
     <div class="col-sm-12">
         <form action="{{ request.base_url }}" method="POST">
             <div class="row" style="color:#FFFFFF;"><p>Vuosi:</p>
