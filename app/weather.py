@@ -10,7 +10,7 @@ def get_temp(year, city):
         results = []
         for row in reader:
             count = row['measurement']
-            count = float(count)
+            count = float(count.replace(',', '.'))
             results.append(count)
 
     data.close()
