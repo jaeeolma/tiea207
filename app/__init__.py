@@ -9,6 +9,7 @@ from postimerkki import merkin_url
 from postimerkki import merkin_tiedot
 from presidentti import hae_presidentti
 from vaesto import *
+from weather import *
 from paaministerit import hae_paaministeri
 import os
 import csv
@@ -83,6 +84,22 @@ def faktat():
     else:
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
+        
+    #säädata
+    heldata = get_temp(year, 'hki')
+    xdata = []
+    
+    for x in heldata:
+        xdata.append("")
+
+    weatherChartID = 'weather'
+    weatherchart = {"renderTo":weatherChartID, "zoomType":"x"}
+    weather_xAxis =[{"categories": xdata}]
+    weather_title = {"text":""}
+    weather_yAxis = {"title":{"text":""}, "plotlines":[{"value":'0', "width":'1', "color":'#808080'}]}
+    weather_tooltip = {}
+    weather_legend = {"layout":'vertical', "align":'right', "verticalAlign":'middle', "borderWidth":'0'}
+    weather_series = [{"name":'Kaisaniemi, Helsinki', "data":get_temp(year, 'hki')},{"name":'Sodankyla', "data":get_temp(year, 'sod')}]
 
 
     return render_template('faktat.html',
@@ -98,7 +115,15 @@ def faktat():
                            presidentin_kuva=presidentin_kuva,
                            presidentin_nimi=presidentin_nimi,
                            paaministeri_url=paaministeri_url,
-                           paaministeri_nimi=paaministeri_nimi)
+                           paaministeri_nimi=paaministeri_nimi,
+                           weatherChartID = weatherChartID,
+                           weatherchart = weatherchart,
+                           weather_title = weather_title,
+                           weather_xAxis = weather_xAxis,
+                           weather_yAxis = weather_yAxis,
+                           weather_tooltip = weather_tooltip,
+                           weather_legend = weather_legend,
+                           weather_series = weather_series)
 
 @app.route('/kuvat', methods=['POST', 'GET'])
 def kuvat():

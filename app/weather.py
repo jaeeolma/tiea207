@@ -9,7 +9,17 @@ def get_temp(year, city):
         reader = csv.DictReader(data, delimiter=';')
         results = []
         for row in reader:
-            results.append(row['measurement'])
+            count = row['measurement']
+            count = float(count)
+            results.append(count)
 
     data.close()
+
     return results
+    
+#year = input("anna vuosi: ")
+#city = raw_input("anna kaupunki: ")
+#print(year)
+#print(city)
+#for n in get_temp(str(year), str(city)):
+#    print(n)
