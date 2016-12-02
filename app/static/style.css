@@ -18,9 +18,7 @@
     margin: 0.2% 0 0 0;
 }
 
-#navi {
-    padding: 0.2% 0.5% 0.2% 0.5%;
-}
+
 
 h1 {
     display: table-cell;
@@ -33,7 +31,7 @@ h1 {
     display: table;
 }
 
-#postimerkki {
+.kuva {
     padding: 0;
 }
 
@@ -79,7 +77,28 @@ li a:hover:not(.active) {
     float:right
 }
 
-
-@media only screen and (max-width: 768px) {
-    
+#navi {
+    padding: 0.2% 0.5% 0.2% 0.5%;
 }
+
+
+@media only screen and (min-width: 1440px) and (max-width: 2559px) {
+    #navi {
+        max-width: 1168px;
+        margin-left: 9.5%;
+    }
+}
+
+@media only screen and (min-width: 2560px) {
+    #navi {
+        max-width: 1168px;
+        margin-left: 27.25%;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .affix + .container {
+        padding-top: 200px;
+    }
+}
+
