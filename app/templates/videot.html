@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block nav %}
-<div id="valilehdet" class="col-sm-12">
         <ul>
             <li><a href="/">Faktat</a></li>
             <li><a class="active" href="videot">Videot</a></li>
@@ -8,30 +7,6 @@
             <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Ohje</a></li>
             <li id ="about"><a href="about">Tiedot</a></li>
         </ul>
-</div>
-{% endblock %}
-
-{% block ohjeModal %}
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
-  
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Ohjeita</h4>
-      </div>
-      <div class="modal-body">
-        <p>Tänne voi kirjoittaa, miten sivustoa käytetään :D</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-      </div>
-    </div>
-    
-  </div>
-</div>
 {% endblock %}
 
 {% block content %}

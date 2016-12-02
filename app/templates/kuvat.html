@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block nav %}
-<div id="valilehdet" class="col-sm-12">
         <ul>
             <li><a href="/">Faktat</a></li>
             <li><a href="videot">Videot</a></li>
@@ -8,41 +7,17 @@
             <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Ohje</a></li>
             <li id ="about"><a href="about">Tiedot</a></li>
         </ul>
-</div>
-{% endblock %}
-
-{% block ohjeModal %}
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
-  
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Ohjeita</h4>
-      </div>
-      <div class="modal-body">
-        <p>Tänne voi kirjoittaa, miten sivustoa käytetään :D</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-      </div>
-    </div>
-    
-  </div>
-</div>
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-sm-6">
-            <h3>otettiin tällainen kuva</h3>
+            <h3>otettiin tällaisia kuvia</h3>
             {% if finna_url == '' %}
                 <p> Finnan kanta ei löytänyt vuotta :-(</p>
             {% else %}
                 {% for record in finna_record %}
-                <a href="{{ record }}"><img class="img-responsive" src="{{ finna_kuva[loop.index - 1] }}" alt="{{ finna_title[loop.index - 1] }}" title="{{ finna_title[loop.index - 1] }}"></a>
+                <div class="col-sm-6" class="kuva"><a href="{{ record }}"><img class="img-responsive" src="{{ finna_kuva[loop.index - 1] }}" alt="{{ finna_title[loop.index - 1] }}" title="{{ finna_title[loop.index - 1] }}"></a></div>
                 {% endfor %}
             {% endif %}
         </div>
@@ -52,7 +27,7 @@
                 <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6" id="postimerkki"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[loop.index - 1] }}"></div>
+                <div class="col-sm-6" class="kuva"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[loop.index - 1] }}"></div>
             {% endfor %}
             {% endif %}
         </div>
