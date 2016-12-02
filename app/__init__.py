@@ -135,7 +135,7 @@ def kuvat():
     #finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
     #finna_title = finnaresult['title']
     #finna_source = finnaresult['building']
-    for x in range((len(postimerkit)/4)+1):
+    for x in range(len(postimerkit)+1):
         finnaresult = random.choice(finnaresult_list)
         if (finnaresult not in finna_kuvat):
             finna_kuvat.append(FINNA_IMAGE_URL + finnaresult['image'])
