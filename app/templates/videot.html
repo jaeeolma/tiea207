@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block nav %}
-        <ul>
-            <li><a href="/">Faktat</a></li>
-            <li><a class="active" href="videot">Videot</a></li>
-            <li><a href="kuvat">Kuvat</a></li>
-            <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Ohje</a></li>
-            <li id ="about"><a href="about">Tiedot</a></li>
-        </ul>
+    <ul>
+        <li><a href="/">Faktat</a></li>
+        <li><a class="active" href="videot">Videot</a></li>
+        <li><a href="kuvat">Kuvat</a></li>
+        <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#OhjeModal">Ohje</a></li>
+        <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#TiedotModal">Tiedot</a></li>
+    </ul>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,6 @@
                 {% endif %}
             </div>
         </div>
-        {% endfor %}
+    {% endfor %}
     </div>
-
 {% endblock %}

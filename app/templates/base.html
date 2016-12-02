@@ -29,24 +29,26 @@
 <div id="navi" class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
     <div class="col-sm-12">
         <form action="{{ request.base_url }}" method="POST">
-            <div class="row" style="color:#FFFFFF;"><p>Vuosi:</p>
-                <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
+            <div class="row" style="color:#FFFFFF;">
+                <p>Hae dataa vuodelta: </p><input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
             </div>
             <div class="row">
-                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016" oninput="this.form.year.value=this.value"/>
-                <input type="submit" name="laheta" value="Hae"/>
+                <div class="col-sm-3" id="inputit">
+                    <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016" oninput="this.form.year.value=this.value"/>
+                    <input type="submit" name="laheta" value="Hae"/> 
+                </div>
+                <div class="col-sm-9" id="valilehdet">
+                    {% block nav %}{% endblock %}
+                </div>
             </div>
         </form>
-    </div>
-    <div class="col-sm-12" id="valilehdet">
-        {% block nav %}{% endblock %}
     </div>
 </div>
 
 
 <div class="container">
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <!-- Ohje-modaali -->
+    <div class="modal fade" id="OhjeModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -64,6 +66,27 @@
             
         </div>
     </div>
+    
+    <!-- Tiedot-modaali -->
+    <div class="modal fade" id="TiedotModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tiedot</h4>
+            </div>
+            <div class="modal-body">
+                <p>Tänne voi kirjoittaa tietoja sovelluksesta :D</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     <h2>Vuonna {{year}}</h2>
     {% block content %}{% endblock %}
 </div>
