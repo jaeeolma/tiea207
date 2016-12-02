@@ -7,12 +7,16 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.min.css">
     <script type="text/javascript">
-        // With JQuery
-        $("#ex6").slider();
-        $("#ex6").on("slide", function(slideEvt) {
-            $("#ex6SliderVal").text(slideEvt.value);
-        });
+        $(function() {
+            // Without JQuery
+            var slider = new Slider("#ex6");
+            slider.on("slide", function(slideEvt) {
+                $("#ex6SliderVal").text(slideEvt);
+            });
+            });
     </script>
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
 </head>
@@ -29,8 +33,7 @@
                 <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
             </div>
             <div class="row">
-                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016"
-                    oninput="this.form.year.value=this.value"/>
+                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016" oninput="this.form.year.value=this.value"/>
                 <input type="submit" name="laheta" value="Hae"/>
             </div>
         </form>
