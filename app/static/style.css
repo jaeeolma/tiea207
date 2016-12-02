@@ -18,6 +18,23 @@
     padding: 0.5%;
 }
 
+#ohje_slider {
+    color: #ffffff;
+}
+
+#vuosiHaku_valilehdet {
+    padding-bottom: 0,1%;
+}
+
+#vuosi_haku {
+    padding: 0;
+    max-width: 150px;
+}
+
+#valilehdet {
+    padding: 0;
+}
+
 h1 {
     display: table-cell;
     vertical-align: middle;
@@ -27,10 +44,6 @@ h1 {
     background-color: #eee;
     border-radius: 6px; 
     display: table;
-}
-
-.kuva {
-    padding: 0;
 }
 
 ul {
@@ -46,6 +59,8 @@ li {
 }
 
 li a {
+    margin: 0 10px 0 10px;
+    font-size: 16px;
     display: block;
     color: white;
     text-align: center;
@@ -55,12 +70,13 @@ li a {
 }
 
 .btn-group-lg>.btn, .btn-lg {
+  /* modaali buttoneiden määrityksiä */
     padding: 3px 5px;
     font-size: 14px;
 }
 
 li a:hover:not(.active) {
-    background-color: #000000;
+    background-color: #4c4c4c;
     color: white;
     text-decoration: none;
 }
@@ -76,8 +92,13 @@ li a:hover:not(.active) {
     text-decoration: none;
 }
 
-#about {
-    float:right
+p {
+    display: inline;
+}
+
+#modaali {
+    float:right;
+    margin: 0.1%;
 }
 
 #navi {
@@ -108,7 +129,7 @@ li a:hover:not(.active) {
 /* Sliderin tyylittelyt alkaa tästä */
 input[type=range] {
   -webkit-appearance: none;
-  margin: 18px 0;
+  margin:8px 0;
   width: 100%;
 }
 input[type=range]:focus {
@@ -119,42 +140,42 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 8.4px;
   cursor: pointer;
   animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
+  background: #ffffff;
+  border-radius: 2px;
+  border: 0.1px solid #010101;
 }
 input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
+  border: 0.1px solid #000000;
+  height: 16px;
   width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
+  border-radius: 10px;
+  background: #3071a9;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -14px;
+  margin-top: -4.5px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #367ebd;
+  background: #ffffff;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
   animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
+  background: #ffffff;
+  border-radius: 2px;
+  border: 0.1px solid #010101;
 }
 input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
+  border: 0.1px solid #000000;
+  height: 16px;
   width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
+  border-radius: 10px;
+  background: #3071a9;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
@@ -169,29 +190,49 @@ input[type=range]::-ms-track {
 }
 input[type=range]::-ms-fill-lower {
   background: #2a6495;
-  border: 0.2px solid #010101;
+  border: 0.1px solid #010101;
   border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
 }
 input[type=range]::-ms-fill-upper {
-  background: #3071a9;
-  border: 0.2px solid #010101;
+  background: #ffffff;
+  border: 0.1px solid #010101;
   border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
 }
 input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
+  box-shadow: 0.1px 0.1px 0.1px #000000, 0px 0px 0.1px #0d0d0d;
+  border: 0.1px solid #000000;
+  height: 16px;
   width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
+  border-radius: 10px;
+  background: #3071a9;
   cursor: pointer;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #3071a9;
+  background: #ffffff;
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
 }
 /* Sliderin tyylittelyt loppuu tähän */
+
+input[type=number] {
+    text-align: center; 
+    background: #ffffff; 
+    cursor: text;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+input[type=submit] {
+    padding: 2px 5px; 
+    background: #e7e7e7; 
+    cursor: pointer;
+    -webkit-border-radius: 6px;
+    border-radius: 6px; 
+}
+
+input[type=submit]:hover {
+    box-shadow: 0 1px 7px 0 #ffffff, 0 1px 2px 0 #ffffff; 
+}

@@ -4,8 +4,6 @@
         <li><a href="/">Faktat</a></li>
         <li><a href="videot">Videot</a></li>
         <li><a class="active" href="kuvat">Kuvat</a></li>
-        <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#OhjeModal">Ohje</a></li>
-        <li id ="about"><a class="btn btn-info btn-lg" data-toggle="modal" data-target="#TiedotModal">Tiedot</a></li>
     </ul>
 {% endblock %}
 
@@ -17,7 +15,7 @@
                 <p> Finnan kanta ei löytänyt vuotta :-(</p>
             {% else %}
                 {% for record in finna_record %}
-                <div class="col-sm-6" class="kuva"><a href="{{ record }}"><img class="img-responsive" src="{{ finna_kuva[loop.index - 1] }}" alt="{{ finna_title[loop.index - 1] }}" title="{{ finna_source[loop.index - 1] }}&#013;{{ finna_title[loop.index - 1] }}"></a></div>
+                <div class="col-sm-6"><a href="{{ record }}"><img class="img-responsive" src="{{ finna_kuva[loop.index - 1] }}" alt="{{ finna_title[loop.index - 1] }}" title="{{ finna_source[loop.index - 1] }}&#013;{{ finna_title[loop.index - 1] }}"></a></div>
                 {% endfor %}
             {% endif %}
         </div>
@@ -27,7 +25,7 @@
                 <p>Ei löytynyt postimerkkiä hakemaltasi vuodelta :-(</p>
             {% else %}
             {% for merkki in postimerkki_urlit %}
-                <div class="col-sm-6" class="kuva"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[loop.index - 1] }}"></div>
+                <div class="col-sm-6"><img class="img-responsive" id="postimerkkikuva" src="{{ merkki }}" alt="{{ merkki }}" title="{{ postimerkki_tiedot[loop.index - 1] }}"></div>
             {% endfor %}
             {% endif %}
         </div>
