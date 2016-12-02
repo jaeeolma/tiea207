@@ -112,7 +112,7 @@ def kuvat():
     postimerkit = merkin_url(year)
     postimerkki_urlit = []
     postimerkki_tiedot = []
-    if len(postimerkit) == 0:
+    if len(postimerkit) == None:
         postimerkki_urlit.append('')
     else:
         for x in range(len(postimerkit)):
@@ -164,18 +164,27 @@ def videot():
     except:
         year = '1962'
 
+    mid_list = []
+    url_list = []
+    x = 0
+
     #Elävän arkiston tulokset
     tulokset = get_video_list(year)
-    if len(tulokset) == 0:
-        mid = ''
-        url = ''
+    if len(tulokset) == None:
+        mid_list.append('')
+        url_list.append('')
     else:
-        mid = random.choice(tulokset)
-        url = get_video_url(mid)
+        while (len(mid_list) < 8 or x == 15):
+            mid = random.choice(tulokset)
+            if (mid not in mid_list):
+                mid_list.append(mid)
+                url = get_video_url(mid)
+                url_list.append(url)
+                x + 1
 
     return render_template('videot.html',
-                           areena_url=url,
-                           areena_mid=mid,
+                           areena_url=url_list,
+                           areena_mid=mid_list,
                            year=year)
 
                            
