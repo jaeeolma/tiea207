@@ -22,6 +22,7 @@ sys.setdefaultencoding("utf-8")
 
 FINNA_RECORD_URL='https://www.finna.fi/Record/'
 FINNA_IMAGE_URL='https://api.finna.fi'
+VUOSI = 1962
 
 AGE_GROUPS = ['85-', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9', '0-4']
 
@@ -34,7 +35,7 @@ app.static_folder = 'static'
 #app.register_blueprint(ck, url_prefix='/ck')
 #app.jinja_env.add_extension("chartkick.ext.charts")
 
-@app.before_first_request
+#@app.before_first_request
 def update_files():
     articles = 'http://elavaarkisto.kokeile.yle.fi/data/articles.csv'
     mediaarticle = 'http://elavaarkisto.kokeile.yle.fi/data/media-article.csv'
@@ -50,9 +51,11 @@ def update_files():
 def faktat():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
-    
+        year = str(VUOSI)
+
     #väestötaulukon luominen
     chartID = 'vaesto'
     chart_type = 'bar'
@@ -60,10 +63,11 @@ def faktat():
     series = [{"name": 'Miehet', "data":get_male(year)},{"name":'Naiset', "data":get_female(year)}]
     #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
     title = {"text":""}
-    xAxis = [{"categories": AGE_GROUPS, "reversed":"true", "labels":{"step":"1"}},{"opposite":"false", "reversed":"true", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
-    yAxis = {"title":{"text":"Kansalaisia " + get_population(year)}}
-    #plotOptions = {"series":{"stacking":"normal"}}
-    plotOptions = {}
+    xAxis = [{"categories": AGE_GROUPS, "reversed":"false", "labels":{"step":"1"}},{"opposite":"true", "reversed":"false", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
+    #yAxis = {"title":{"text":"Suomalaisia " + get_population(year)}}
+    yAxis = {}
+    plotOptions = {"series":{"stacking":"normal"}}
+    #plotOptions = {}
     tooltip = {}
     #tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
 
@@ -86,20 +90,16 @@ def faktat():
         paaministeri_url = paaministerin_tiedot[1]
         
     #säädata
-    heldata = get_temp(year, 'hki')
-    xdata = []
+    months = ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu']
     
-    for x in heldata:
-        xdata.append("")
-
     weatherChartID = 'weather'
-    weatherchart = {"renderTo":weatherChartID, "zoomType":"x"}
-    weather_xAxis =[{"categories": xdata}]
+    weatherchart = {"renderTo":weatherChartID}
+    weather_xAxis =[{"categories": months}]
     weather_title = {"text":""}
     weather_yAxis = {"title":{"text":""}, "plotlines":[{"value":'0', "width":'1', "color":'#808080'}]}
     weather_tooltip = {}
     weather_legend = {"layout":'vertical', "align":'right', "verticalAlign":'middle', "borderWidth":'0'}
-    weather_series = [{"name":'Kaisaniemi, Helsinki', "data":get_temp(year, 'hki')},{"name":'Sodankyla', "data":get_temp(year, 'sod')}]
+    weather_series = [{"name":'Kaisaniemi, Helsinki', "data":get_monthly_temp(year, 'hki')},{"name":'Sodankyla', "data":get_monthly_temp(year, 'sod')}]
 
 
     return render_template('faktat.html',
@@ -129,8 +129,11 @@ def faktat():
 def kuvat():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
+        year = str(VUOSI)
+
 
     # postimerkkien tulokset
     postimerkit = merkin_url(year)
@@ -162,7 +165,7 @@ def kuvat():
     #finna_source = finnaresult['building']
     for x in range(len(postimerkit)+1):
         finnaresult = random.choice(finnaresult_list)
-        if (finnaresult not in finna_kuvat):
+        if (FINNA_IMAGE_URL + finnaresult['image'] not in finna_kuvat):
             finna_kuvat.append(FINNA_IMAGE_URL + finnaresult['image'])
             finna_records.append(FINNA_RECORD_URL + urllib.quote(finnaresult['id']))
             finna_titles.append(finnaresult['title'])
@@ -185,26 +188,27 @@ def kuvat():
 def videot():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
+        year = str(VUOSI)
 
     mid_list = []
     url_list = []
     x = 0
-
     #Elävän arkiston tulokset
     tulokset = get_video_list(year)
-    if len(tulokset) == None:
+    if len(tulokset) == 0:
         mid_list.append('')
         url_list.append('')
     else:
-        while (len(mid_list) < 8 or x == 15):
+        for x in range(0,10 or x==20):
+            x += 1
             mid = random.choice(tulokset)
             if (mid not in mid_list):
                 mid_list.append(mid)
                 url = get_video_url(mid)
                 url_list.append(url)
-                x + 1
 
     return render_template('videot.html',
                            areena_url=url_list,
@@ -224,11 +228,22 @@ def pelle():
 def about():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
+        year = str(VUOSI)
         
     return render_template('about.html', year=year)
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    

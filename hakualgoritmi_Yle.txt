@@ -1,7 +1,0 @@
-Ylen hakualgoritmi vaihe vaiheelta:
-
-1) Etsi media.csv -taulusta kaikki mediat, joiden FIRSTRUN täsmää hakuvuoteen JA EMBED-sarakkeessa on arvo 1. 
-2) Valitse niistä randomilla joku ja tallenna sen mediaid
-3) Etsi media-article.csv -taulusta articleid, joka vastaa mediaid:tä
-4) Etsi articles.csv -taulusta articleurl, joka vastaa articleid:tä
-5) palauta mediaid ja articleid.
