@@ -63,10 +63,11 @@ def faktat():
     series = [{"name": 'Miehet', "data":get_male(year)},{"name":'Naiset', "data":get_female(year)}]
     #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
     title = {"text":""}
-    xAxis = [{"categories": AGE_GROUPS, "reversed":"true", "labels":{"step":"1"}},{"opposite":"false", "reversed":"true", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
-    yAxis = {"title":{"text":"Suomalaisia " + get_population(year)}}
-    #plotOptions = {"series":{"stacking":"normal"}}
-    plotOptions = {}
+    xAxis = [{"categories": AGE_GROUPS, "reversed":"false", "labels":{"step":"1"}},{"opposite":"true", "reversed":"false", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
+    #yAxis = {"title":{"text":"Suomalaisia " + get_population(year)}}
+    yAxis = {}
+    plotOptions = {"series":{"stacking":"normal"}}
+    #plotOptions = {}
     tooltip = {}
     #tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
 

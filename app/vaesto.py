@@ -20,7 +20,7 @@ def get_male(year):
                 i = 0
                 for column in reversed(reader.fieldnames):
                     count = row[column]
-                    count = int(count)
+                    count = -int(count)
                     results.append(count)
         del results[len(results)-1]
         
