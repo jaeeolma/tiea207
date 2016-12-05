@@ -22,6 +22,7 @@ sys.setdefaultencoding("utf-8")
 
 FINNA_RECORD_URL='https://www.finna.fi/Record/'
 FINNA_IMAGE_URL='https://api.finna.fi'
+VUOSI = 1962
 
 AGE_GROUPS = ['85-', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9', '0-4']
 
@@ -50,9 +51,11 @@ def update_files():
 def faktat():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
-    
+        year = str(VUOSI)
+
     #väestötaulukon luominen
     chartID = 'vaesto'
     chart_type = 'bar'
@@ -129,8 +132,11 @@ def faktat():
 def kuvat():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
+        year = str(VUOSI)
+
 
     # postimerkkien tulokset
     postimerkit = merkin_url(year)
@@ -185,8 +191,10 @@ def kuvat():
 def videot():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
+        year = str(VUOSI)
 
     mid_list = []
     url_list = []
@@ -224,8 +232,10 @@ def pelle():
 def about():
     try:
         year = request.form['year']
+        global VUOSI
+        VUOSI = year
     except:
-        year = '1962'
+        year = str(VUOSI)
         
     return render_template('about.html', year=year)
 
