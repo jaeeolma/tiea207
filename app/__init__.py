@@ -34,7 +34,7 @@ app.static_folder = 'static'
 #app.register_blueprint(ck, url_prefix='/ck')
 #app.jinja_env.add_extension("chartkick.ext.charts")
 
-@app.before_first_request
+#@app.before_first_request
 def update_files():
     articles = 'http://elavaarkisto.kokeile.yle.fi/data/articles.csv'
     mediaarticle = 'http://elavaarkisto.kokeile.yle.fi/data/media-article.csv'
@@ -61,7 +61,7 @@ def faktat():
     #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
     title = {"text":""}
     xAxis = [{"categories": AGE_GROUPS, "reversed":"true", "labels":{"step":"1"}},{"opposite":"false", "reversed":"true", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
-    yAxis = {"title":{"text":"Kansalaisia " + get_population(year)}}
+    yAxis = {"title":{"text":"Suomalaisia " + get_population(year)}}
     #plotOptions = {"series":{"stacking":"normal"}}
     plotOptions = {}
     tooltip = {}
@@ -86,20 +86,16 @@ def faktat():
         paaministeri_url = paaministerin_tiedot[1]
         
     #säädata
-    heldata = get_temp(year, 'hki')
-    xdata = []
+    months = ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu']
     
-    for x in heldata:
-        xdata.append("")
-
     weatherChartID = 'weather'
-    weatherchart = {"renderTo":weatherChartID, "zoomType":"x"}
-    weather_xAxis =[{"categories": xdata}]
+    weatherchart = {"renderTo":weatherChartID}
+    weather_xAxis =[{"categories": months}]
     weather_title = {"text":""}
     weather_yAxis = {"title":{"text":""}, "plotlines":[{"value":'0', "width":'1', "color":'#808080'}]}
     weather_tooltip = {}
     weather_legend = {"layout":'vertical', "align":'right', "verticalAlign":'middle', "borderWidth":'0'}
-    weather_series = [{"name":'Kaisaniemi, Helsinki', "data":get_temp(year, 'hki')},{"name":'Sodankyla', "data":get_temp(year, 'sod')}]
+    weather_series = [{"name":'Kaisaniemi, Helsinki', "data":get_monthly_temp(year, 'hki')},{"name":'Sodankyla', "data":get_monthly_temp(year, 'sod')}]
 
 
     return render_template('faktat.html',
@@ -229,6 +225,16 @@ def about():
         
     return render_template('about.html', year=year)
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    

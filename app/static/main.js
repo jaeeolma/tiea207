@@ -1,7 +1,7 @@
 ﻿$(document).ready(function() {
 	$(chart_id).highcharts({
 		chart: chart,
-		title: title,
+		title: {text: 'Suomen väestörakenne'},
 		xAxis: xAxis,
 		yAxis: yAxis,
 		series: series,
