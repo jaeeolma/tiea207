@@ -196,14 +196,13 @@ def videot():
     mid_list = []
     url_list = []
     x = 0
-
     #Elävän arkiston tulokset
     tulokset = get_video_list(year)
     if len(tulokset) == 0:
         mid_list.append('')
         url_list.append('')
     else:
-        while (len(mid_list) < 8 or x < 10):
+        for x in range(0,10 or x==20):
             x += 1
             mid = random.choice(tulokset)
             if (mid not in mid_list):
