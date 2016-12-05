@@ -199,17 +199,17 @@ def videot():
 
     #Elävän arkiston tulokset
     tulokset = get_video_list(year)
-    if len(tulokset) == None:
+    if len(tulokset) == 0:
         mid_list.append('')
         url_list.append('')
     else:
-        while (len(mid_list) < 8 or x == 15):
+        while (len(mid_list) < 8 or x < 10):
+            x += 1
             mid = random.choice(tulokset)
             if (mid not in mid_list):
                 mid_list.append(mid)
                 url = get_video_url(mid)
                 url_list.append(url)
-                x + 1
 
     return render_template('videot.html',
                            areena_url=url_list,
