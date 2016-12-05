@@ -3,7 +3,7 @@
     width: 100%;
 }
 .affix + .container {
-      padding-top: 150px;
+      padding-top: 90px;
 }
 
 .navbar {
@@ -24,25 +24,25 @@
     padding: 0.5%;
 }
 
-#otsikko {
-    background-color: #eee;
-    width: 100%;
-    display: table;
+.navbar {
+    margin-bottom: 0;
 }
 
-#valitse_vuosi{
-    display: inline;
-    color: #ffffff;
-    margin-right: 1%; 
+body {
+    font-family: Roboto;
 }
 
 h1 {
     display: table-cell;
     vertical-align: middle;
+    font-weight: 700;
 }
 
 h2 {
     font-size: 24px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-weight: 600;
 }
 
 h3 {
@@ -51,7 +51,8 @@ h3 {
 
 ul {
     list-style-type: none;
-    margin: 0;
+    width: 27%;
+    margin: auto;
     padding: 0;
     overflow: hidden;
     background-color: #3B3F45;
@@ -90,6 +91,18 @@ li a:hover:not(.active) {
     text-decoration: none;
 }
 
+#otsikko {
+    background-color: #eee;
+    width: 100%;
+    display: table;
+}
+
+#valitse_vuosi{
+    display: inline;
+    color: #ffffff;
+    margin-right: 1%; 
+}
+
 #modaali {
     float:right;
     margin: 0.1%;
@@ -125,9 +138,9 @@ li a:hover:not(.active) {
     }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 425px) {
     .affix + .container {
-        padding-top: 200px;
+        padding-top: 145px;
     }
 }
 
