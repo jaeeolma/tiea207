@@ -6,12 +6,11 @@ Python Flask -websovellus, joka visualisoi Suomen itsenäisyyden vuosia kuvien, 
 
 Datalähteet:
 
-Yle Elävä Arkisto
-Tilastokeskus
-Ilmatieteen Laitos
-Finna
+Yle Elävä Arkisto,
+Tilastokeskus,
+Ilmatieteen Laitos,
+Finna,
 Postimuseo
 
 Tekijät:
-
 Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen
