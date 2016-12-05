@@ -7,18 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.min.css">
-    <script type="text/javascript">
-        $(function() {
-            // Without JQuery
-            var slider = new Slider("#ex6");
-            slider.on("slide", function(slideEvt) {
-                $("#ex6SliderVal").text(slideEvt);
-            });
-            });
-    </script>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/style.css"/>
 </head>
 
 <body>
@@ -30,21 +19,19 @@
     <div class="col-sm-12">
         <form action="{{ request.base_url }}" method="POST">
             <div class="col-sm-12">
-                <p id="ohje_slider">Valitse vuosi: </p>
+                <p id="valitse_vuosi">Valitse vuosi: </p>
+
+                <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016" oninput="this.form.year.value=this.value"/>
+                <input type="submit" name="laheta" value="Hae"/>
+                
                 <button type="button" id="modaali" class="btn btn-info btn-lg" data-toggle="modal" data-target="#OhjeModal">Ohje</button>
                 <button type="button" id="modaali" class="btn btn-info btn-lg" data-toggle="modal" data-target="#TiedotModal">Tiedot</button>
             </div>
             <div class="col-sm-12">
                 <input type="range" name="year" value="{{ year }}" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
             </div>
-            <div class="col-sm-12" id="vuosiHaku_valilehdet">
-                <div class="col-sm-3" id="vuosi_haku">
-                    <input type="number" name="amountInput" value="{{ year }}" min="1917" max="2016" oninput="this.form.year.value=this.value"/>
-                    <input type="submit" name="laheta" value="Hae"/> 
-                </div>
-                <div class="col-sm-9" id="valilehdet">
+            <div class="col-sm-12">
                     {% block nav %}{% endblock %}
-                </div>
             </div>
         </form>
     </div>
@@ -62,13 +49,14 @@
                 <h4 class="modal-title">Ohjeita</h4>
             </div>
             <div class="modal-body">
-                <p>Tänne voi kirjoittaa, miten sivustoa käytetään :D</p>
+                <p>Tarkoitus on valita sliderilta vuosi, jolta haluat tietoa hakea.</p>
+                <p>Valittavanasi ovat vuodet 1917-2016.</p>
+                <p>Voit tutkia hakemasi vuoden dataa klikkailemalla eri välilehtiä, joita ovat Faktat, Videot ja Kuvat.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
             </div>
             </div>
-            
         </div>
     </div>
     
@@ -82,7 +70,7 @@
                 <h4 class="modal-title">Tiedot</h4>
             </div>
             <div class="modal-body">
-                <p>Sivuston tekijät Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen</p>
+                <p>Sivuston tekijät: Mikko Kaipainen, Riku Kukkaniemi, Janne Mäyrä, Viivi Teräväinen.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>

@@ -14,25 +14,26 @@
     width: 100%;
 }
 
+.btn-group-lg>.btn, .btn-lg {
+  /* modaali-buttoneiden määrityksiä */
+    padding: 3px 5px;
+    font-size: 14px;
+}
+
 .col-sm-6 {
     padding: 0.5%;
 }
 
-#ohje_slider {
+#otsikko {
+    background-color: #eee;
+    width: 100%;
+    display: table;
+}
+
+#valitse_vuosi{
+    display: inline;
     color: #ffffff;
-}
-
-#vuosiHaku_valilehdet {
-    padding-bottom: 0,1%;
-}
-
-#vuosi_haku {
-    padding: 0;
-    max-width: 150px;
-}
-
-#valilehdet {
-    padding: 0;
+    margin-right: 1%; 
 }
 
 h1 {
@@ -40,10 +41,12 @@ h1 {
     vertical-align: middle;
 }
 
-#otsikko {
-    background-color: #eee;
-    border-radius: 6px; 
-    display: table;
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
 }
 
 ul {
@@ -51,7 +54,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #222;
+    background-color: #3B3F45;
 }
 
 li {
@@ -69,12 +72,7 @@ li a {
     border-radius: 4px;
 }
 
-.btn-group-lg>.btn, .btn-lg {
-  /* modaali buttoneiden määrityksiä */
-    padding: 3px 5px;
-    font-size: 14px;
-}
-
+/* hover = hiiri elementin päällä */
 li a:hover:not(.active) {
     background-color: #4c4c4c;
     color: white;
@@ -92,10 +90,6 @@ li a:hover:not(.active) {
     text-decoration: none;
 }
 
-p {
-    display: inline;
-}
-
 #modaali {
     float:right;
     margin: 0.1%;
@@ -103,6 +97,7 @@ p {
 
 #navi {
     padding: 0.2% 0.5% 0.2% 0.5%;
+    background-color: #3B3F45;
 }
 
 
@@ -111,10 +106,20 @@ p {
         max-width: 1168px;
         margin-left: 9.5%;
     }
+
+    #otsikko {
+        max-width: 1168px;
+        margin-left: 9.5%;
+    }
 }
 
 @media only screen and (min-width: 2560px) {
     #navi {
+        max-width: 1168px;
+        margin-left: 27.25%;
+    }
+
+    #otsikko {
         max-width: 1168px;
         margin-left: 27.25%;
     }
@@ -126,7 +131,7 @@ p {
     }
 }
 
-/* Sliderin tyylittelyt alkaa tästä */
+/* Sliderin tyylittelyt alkaa */
 input[type=range] {
   -webkit-appearance: none;
   margin:8px 0;
@@ -215,7 +220,7 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
 }
-/* Sliderin tyylittelyt loppuu tähän */
+/* Sliderin tyylittelyt loppuu */
 
 input[type=number] {
     text-align: center; 
