@@ -6,7 +6,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-
+# Hakee postimerkin urlin postimerkit csv:sta vuoden perusteella
 def merkin_url(year):
     vuodet_list = []
     vuosi_numero = year
@@ -20,6 +20,7 @@ def merkin_url(year):
                  vuodet_list.append(row['kuvan_url'])
     return vuodet_list
 
+# Hakee halutut tiedot postimerkista postimerkin urlin perusteella
 def merkin_tiedot(url):
     tiedot_list = []
     etsittava_url = str(url)

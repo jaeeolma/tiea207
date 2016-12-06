@@ -49,6 +49,7 @@ def update_files():
 
 @app.route('/', methods=['POST', 'GET'])
 def faktat():
+    # hakee vuoden sliderista
     try:
         year = request.form['year']
         global VUOSI
@@ -133,6 +134,7 @@ def faktat():
 
 @app.route('/kuvat', methods=['POST', 'GET'])
 def kuvat():
+    # hakee vuoden sliderista
     try:
         year = request.form['year']
         global VUOSI
@@ -192,6 +194,7 @@ def kuvat():
 
 @app.route('/videot', methods=['POST', 'GET'])
 def videot():
+    # hakee vuoden sliderista
     try:
         year = request.form['year']
         global VUOSI
@@ -229,17 +232,6 @@ def pelle():
     url = get_video_url(mid)
     
     return render_template('pelle.html', areena_url=url, areena_mid=mid)
-    
-@app.route('/about', methods=['POST', 'GET'])
-def about():
-    try:
-        year = request.form['year']
-        global VUOSI
-        VUOSI = year
-    except:
-        year = str(VUOSI)
-        
-    return render_template('about.html', year=year)
 
 @app.errorhandler(404)
 def not_found_error(error):

@@ -4,7 +4,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 import csv
 
-
+#Hoitaa presidentin tietojen hakemisen presidentit.csv:sta
 def hae_presidentti(year):
     presidentin_tiedot = []
     etsittava_vuosi = str(year)
