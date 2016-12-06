@@ -49,6 +49,7 @@ def update_files():
 
 @app.route('/', methods=['POST', 'GET'])
 def faktat():
+    # hakee vuoden sliderista
     try:
         year = request.form['year']
         global VUOSI
@@ -76,18 +77,22 @@ def faktat():
     if len(presidentin_tiedot) == 0:
         presidentin_nimi = ''
         presidentin_kuva = ''
+        presidentin_sivu = ''
     else:
         presidentin_nimi = presidentin_tiedot[0]
         presidentin_kuva = presidentin_tiedot[1]
+        presidentin_sivu = presidentin_tiedot[2]
 
     #pääministerihaku
     paaministerin_tiedot = hae_paaministeri(year)
     if len(paaministerin_tiedot) == 0:
         paaministeri_nimi = ''
         paaministeri_url = ''
+        paaministeri_sivu = ''
     else:
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
+        paaministeri_sivu = paaministerin_tiedot[2]
         
     #säädata
     months = ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu']
@@ -114,8 +119,10 @@ def faktat():
                            tooltip = tooltip,
                            presidentin_kuva=presidentin_kuva,
                            presidentin_nimi=presidentin_nimi,
+                           presidentin_sivu=presidentin_sivu,
                            paaministeri_url=paaministeri_url,
                            paaministeri_nimi=paaministeri_nimi,
+                           paaministeri_sivu=paaministeri_sivu,
                            weatherChartID = weatherChartID,
                            weatherchart = weatherchart,
                            weather_title = weather_title,
@@ -127,6 +134,7 @@ def faktat():
 
 @app.route('/kuvat', methods=['POST', 'GET'])
 def kuvat():
+    # hakee vuoden sliderista
     try:
         year = request.form['year']
         global VUOSI
@@ -186,6 +194,7 @@ def kuvat():
 
 @app.route('/videot', methods=['POST', 'GET'])
 def videot():
+    # hakee vuoden sliderista
     try:
         year = request.form['year']
         global VUOSI
@@ -223,17 +232,6 @@ def pelle():
     url = get_video_url(mid)
     
     return render_template('pelle.html', areena_url=url, areena_mid=mid)
-    
-@app.route('/about', methods=['POST', 'GET'])
-def about():
-    try:
-        year = request.form['year']
-        global VUOSI
-        VUOSI = year
-    except:
-        year = str(VUOSI)
-        
-    return render_template('about.html', year=year)
 
 @app.errorhandler(404)
 def not_found_error(error):

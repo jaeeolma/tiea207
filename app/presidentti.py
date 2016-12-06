@@ -4,7 +4,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 import csv
 
-
+#Hoitaa presidentin tietojen hakemisen presidentit.csv:sta
 def hae_presidentti(year):
     presidentin_tiedot = []
     etsittava_vuosi = str(year)
@@ -16,4 +16,5 @@ def hae_presidentti(year):
             if etsittava_vuosi in row['vuosi']:
                 presidentin_tiedot.append(row['nimi'])
                 presidentin_tiedot.append(row['kuvan_url'])
+                presidentin_tiedot.append(row['tietoja_sivu'])
     return presidentin_tiedot
