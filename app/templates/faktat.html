@@ -14,7 +14,7 @@
             {% if presidentin_kuva == '' %}
                 <p>Ensimmäinen presidentti valittiin vuonna 1919</p>
             {% else %}
-                <img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}">
+                <a href="{{ presidentin_sivu }}"><img class="img-responsive" src="{{ presidentin_kuva }}" alt="{{ presidentin_nimi }}" title="{{ presidentin_nimi }}"></a>
             {% endif %}
         </div>
         <div class="col-sm-6">
@@ -22,7 +22,7 @@
             {% if paaministeri_url == '' %}
                 <p>Ei löytynyt pääministeriä hakemaltasi vuodelta :-(</p>
             {% else %}
-                <img class="img-responsive" src="{{ paaministeri_url }}" alt="{{ paaministeri_nimi }}" title="{{ paaministeri_nimi }}">
+                <a href="{{ paaministeri_sivu }}"> <img class="img-responsive" src="{{ paaministeri_url }}" alt="{{ paaministeri_nimi }}" title="{{ paaministeri_nimi }}"></a>
             {% endif %}
         </div>
     </div>

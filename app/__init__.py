@@ -76,18 +76,22 @@ def faktat():
     if len(presidentin_tiedot) == 0:
         presidentin_nimi = ''
         presidentin_kuva = ''
+        presidentin_sivu = ''
     else:
         presidentin_nimi = presidentin_tiedot[0]
         presidentin_kuva = presidentin_tiedot[1]
+        presidentin_sivu = presidentin_tiedot[2]
 
     #pääministerihaku
     paaministerin_tiedot = hae_paaministeri(year)
     if len(paaministerin_tiedot) == 0:
         paaministeri_nimi = ''
         paaministeri_url = ''
+        paaministeri_sivu = ''
     else:
         paaministeri_nimi = paaministerin_tiedot[0]
         paaministeri_url = paaministerin_tiedot[1]
+        paaministeri_sivu = paaministerin_tiedot[2]
         
     #säädata
     months = ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu']
@@ -114,8 +118,10 @@ def faktat():
                            tooltip = tooltip,
                            presidentin_kuva=presidentin_kuva,
                            presidentin_nimi=presidentin_nimi,
+                           presidentin_sivu=presidentin_sivu,
                            paaministeri_url=paaministeri_url,
                            paaministeri_nimi=paaministeri_nimi,
+                           paaministeri_sivu=paaministeri_sivu,
                            weatherChartID = weatherChartID,
                            weatherchart = weatherchart,
                            weather_title = weather_title,

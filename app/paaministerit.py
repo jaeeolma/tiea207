@@ -16,4 +16,5 @@ def hae_paaministeri(year):
             if etsittava_vuosi in row['vuosi']:
                 paaministeri_tiedot.append(row['nimi'])
                 paaministeri_tiedot.append(row['kuvan_url'])
+                paaministeri_tiedot.append(row['tietoja_sivu'])
     return paaministeri_tiedot
