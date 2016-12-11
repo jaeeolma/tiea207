@@ -91,16 +91,23 @@ h3 {
     border: 0;
 }
 
+.btn-info:focus, .btn-info:focus {
+    color: #808080;
+    background-color: #3B3F45;
+    border: 0;
+}
+
 .btn-info {
     color: #808080;
     background-color: #3B3F45;
-    border-color: #3B3F45;
+    border: 0;
 }
 
 .btn-info:hover {
     color: #808080;
     font-weight:700;
     background-color: #151515;
+    border: 0;
 }
 
 .slider.slider-horizontal {
