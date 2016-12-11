@@ -91,7 +91,7 @@ h3 {
     border: 0;
 }
 
-.btn-info:focus, .btn-info:focus {
+.btn-info.focus, .btn-info:focus {
     color: #808080;
     background-color: #3B3F45;
     border: 0;
