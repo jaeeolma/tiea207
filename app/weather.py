@@ -2,6 +2,7 @@
 
 import csv as csv
 import os
+import math
 
 def get_temp(year, city):
     path = os.path.join(os.path.dirname(__file__), '../data/weather/' + city + '/' + year + '.csv')
@@ -41,8 +42,12 @@ def get_monthly_temp(year, city):
         day += 1
         if day == tot_days:
             avg_temp = temp_sum / (day + 1)
-            avg_temp = float(format(avg_temp, '.2f'))
-            monthly_temp.append(avg_temp)
+            if math.isnan(avg_temp):
+                monthly_temp.append('')
+            else: 
+                
+                avg_temp = float(format(avg_temp, '.2f'))
+                monthly_temp.append(avg_temp)
             day = 0
             temp_sum = 0
             if month == 12:
@@ -54,4 +59,5 @@ def get_monthly_temp(year, city):
     
 #year = raw_input("anna vuosi: ")
 #city = raw_input("anna kaupunki: ")
+#print(get_temp(year,city))
 #print(get_monthly_temp(year, city))
