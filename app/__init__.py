@@ -58,10 +58,10 @@ def faktat():
         #global VUOSI
         #VUOSI = year
     except:
-        if session['year'] is '':
-            session['year'] = VUOSI
-        else:
+        if 'year' in session:
             pass
+        else:
+            session['year'] = VUOSI
     
     year = session['year']
     #väestötaulukon luominen
