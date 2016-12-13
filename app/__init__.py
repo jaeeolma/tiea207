@@ -35,7 +35,7 @@ app.static_folder = 'static'
 #app.register_blueprint(ck, url_prefix='/ck')
 #app.jinja_env.add_extension("chartkick.ext.charts")
 
-#@app.before_first_request
+@app.before_first_request
 def update_files():
     articles = 'http://elavaarkisto.kokeile.yle.fi/data/articles.csv'
     mediaarticle = 'http://elavaarkisto.kokeile.yle.fi/data/media-article.csv'
