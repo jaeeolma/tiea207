@@ -13,9 +13,7 @@ def get_temp(year, city):
             count = row['measurement']
             count = float(count.replace(',', '.'))
             results.append(count)
-
     data.close()
-
     return results
 
 #laskee keskilämpötilan vuoden arvoista
@@ -44,8 +42,7 @@ def get_monthly_temp(year, city):
             avg_temp = temp_sum / (day + 1)
             if math.isnan(avg_temp):
                 monthly_temp.append('')
-            else: 
-                
+            else:           
                 avg_temp = float(format(avg_temp, '.2f'))
                 monthly_temp.append(avg_temp)
             day = 0
@@ -54,7 +51,6 @@ def get_monthly_temp(year, city):
                 break
             else:
                 month += 1
-        
     return monthly_temp
     
 #year = raw_input("anna vuosi: ")
