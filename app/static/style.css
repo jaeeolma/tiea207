@@ -66,17 +66,19 @@ h3 {
     width: 33.33333333%;
 }
 
-#modaalit {
-    float: right;
-}
-
 #vuosi_haku_inputit {
     padding-left: 8px;
+}
+
+#modaalit {
+    float: right;
+    outline: none;
 }
 
 #modaali {
     float:right;
     margin: 1px;
+    outline: none;
 }
 
 #valilehdet {
@@ -89,18 +91,21 @@ h3 {
     padding: 3px 5px;
     font-size: 14px;
     border: 0;
+    outline: none;
 }
 
 .btn-info.focus, .btn-info:focus {
     color: #808080;
     background-color: #3B3F45;
     border: 0;
+    outline: none;
 }
 
 .btn-info {
     color: #808080;
     background-color: #3B3F45;
     border: 0;
+    outline: none;
 }
 
 .btn-info:hover {
@@ -108,6 +113,7 @@ h3 {
     font-weight:700;
     background-color: #151515;
     border: 0;
+    outline: none;
 }
 
 .slider.slider-horizontal {
@@ -330,13 +336,7 @@ input[type=number] {
     border: 0;
     padding: 0;
     margin: 0;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /*Silti jää jotakin marginia, jota ei vissiin saa pois*/
+    outline: none;
 }
 
 input[type=submit] {
