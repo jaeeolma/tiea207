@@ -63,7 +63,7 @@ def faktat():
         else:
             session['year'] = VUOSI
     
-    year = session['year']
+    year = str(session['year'])
     #väestötaulukon luominen
     chartID = 'vaesto'
     chart_type = 'bar'
@@ -149,7 +149,7 @@ def kuvat():
     except:
         pass
 
-    year = session['year']
+    year = str(session['year'])
     # postimerkkien tulokset
     postimerkit = merkin_url(year)
     postimerkki_urlit = []
@@ -209,7 +209,7 @@ def videot():
     except:
         pass
         
-    year = session['year']
+    year = str(session['year'])
     mid_list = []
     url_list = []
     x = 0
