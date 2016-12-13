@@ -55,8 +55,8 @@ def faktat():
     # hakee vuoden sliderista
     try:
         year = request.form['year']
-        global VUOSI
-        VUOSI = year
+        #global VUOSI
+        #VUOSI = year
     except:
         year = str(VUOSI)
 
@@ -140,8 +140,8 @@ def kuvat():
     # hakee vuoden sliderista
     try:
         year = request.form['year']
-        global VUOSI
-        VUOSI = year
+        #global VUOSI
+        #VUOSI = year
     except:
         year = str(VUOSI)
 
@@ -200,8 +200,8 @@ def videot():
     # hakee vuoden sliderista
     try:
         year = request.form['year']
-        global VUOSI
-        VUOSI = year
+        #global VUOSI
+        #VUOSI = year
     except:
         year = str(VUOSI)
 
