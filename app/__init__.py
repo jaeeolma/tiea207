@@ -1,7 +1,7 @@
 #-*- coding: utf8 -*-
 
 from flask import Flask
-from flask import render_template, request, Blueprint
+from flask import render_template, request, Blueprint, session
 from yle2 import get_video_list
 from yle2 import get_video_url
 from finna import search_finna
@@ -28,7 +28,7 @@ AGE_GROUPS = ['85-', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-5
 
 
 app = Flask(__name__)
-
+app.secret_key = 'sikrit'
 app.static_folder = 'static'
 
 #ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(), static_url_path='/static')
@@ -54,12 +54,16 @@ def update_files():
 def faktat():
     # hakee vuoden sliderista
     try:
-        year = request.form['year']
+        session['year'] = request.form['year']
         #global VUOSI
         #VUOSI = year
     except:
-        year = str(VUOSI)
-
+        if session['year'] is '':
+            session['year'] = VUOSI
+        else:
+            pass
+    
+    year = session['year']
     #väestötaulukon luominen
     chartID = 'vaesto'
     chart_type = 'bar'
@@ -139,13 +143,13 @@ def faktat():
 def kuvat():
     # hakee vuoden sliderista
     try:
-        year = request.form['year']
+        session['year'] = request.form['year']
         #global VUOSI
         #VUOSI = year
     except:
-        year = str(VUOSI)
+        pass
 
-
+    year = session['year']
     # postimerkkien tulokset
     postimerkit = merkin_url(year)
     postimerkki_urlit = []
@@ -199,12 +203,13 @@ def kuvat():
 def videot():
     # hakee vuoden sliderista
     try:
-        year = request.form['year']
+        session['year'] = request.form['year']
         #global VUOSI
         #VUOSI = year
     except:
-        year = str(VUOSI)
-
+        pass
+        
+    year = session['year']
     mid_list = []
     url_list = []
     x = 0

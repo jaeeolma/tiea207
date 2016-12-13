@@ -15,33 +15,16 @@
 <div class="container" id="otsikko" style="height:100px;">
     <h1 class="text-center">SUOMEN VUOSIKATSAUS</h1>
 </div>
-<script>
 
-$(document).ready(function() {
-  //var vuosi = 1992;
-  //document.getElementById("slider_input").setAttribute("value", vuosi);
-  //document.getElementById("vuosi_input").setAttribute("value", vuosi);
-  $('#haku_input').click(function(){
-    //var vuosi = $('#vuosi_input').attr( "value" );
-    var vuosi = document.getElementById("vuosi_input").getAttribute("value");
-    document.getElementById("slider_input").setAttribute("value", vuosi);
-    document.getElementById("vuosi_input").setAttribute("value", vuosi);
-    alert("kukkuu");
-      //$('#vuosi_input').attr({"value" : 1992});
-      //$('#slider_input').attr({"value" : 1992});
-});
-
-});
-</script>
 <div id="navi" class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
     <div class="col-sm-12">
         <form action="{{ request.base_url }}" method="POST">
             <div class="col-sm-12">
-                <input id="slider_input" type="range" name="year" value="" min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
+                <input id="slider_input" type="range" name="year" value={{ year }} min="1917" max="2016" oninput="this.form.amountInput.value=this.value"/>
             </div>
             <div class="col-sm-12" id="navin_tokarivi">
                 <div class="col-sm-4" id="vuosi_haku_inputit">
-                    <input id="vuosi_input" type="number" name="amountInput" value="" min="1917" max="2016" oninput="this.form.year.value=this.value"/>
+                    <input id="vuosi_input" type="number" name="amountInput" value={{ year }} min="1917" max="2016" oninput="this.form.year.value=this.value"/>
                     <input id="haku_input" type="submit" name="laheta" value="Hae"/>
                 </div>
                 <div class="col-sm-4" id="valilehdet">
