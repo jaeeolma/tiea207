@@ -1,7 +1,7 @@
 #-*- coding: utf8 -*-
 
 from flask import Flask
-from flask import render_template, request, Blueprint, session
+from flask import render_template, request, Blueprint, session, app
 from yle2 import get_video_list
 from yle2 import get_video_url
 from finna import search_finna
@@ -11,6 +11,7 @@ from presidentti import hae_presidentti
 from vaesto import *
 from weather import *
 from paaministerit import hae_paaministeri
+from datetime import timedelta
 import os
 import csv
 import random
@@ -50,6 +51,11 @@ def update_files():
     except:
         pass
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=5)
+        
 @app.route('/', methods=['POST', 'GET'])
 def faktat():
     # hakee vuoden sliderista
