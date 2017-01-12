@@ -12,8 +12,7 @@ def get_male(year):
         year = '2015'
     path = os.path.join(os.path.dirname(__file__), '../data/vaesto_miehet.csv') 
     with open(path) as data:
-        reader = csv.DictReader(data, delimiter=',')
-        
+        reader = csv.DictReader(data, delimiter=',')     
         results = []
         for row in reader:
             if year in row['Vuosi']:
@@ -22,8 +21,7 @@ def get_male(year):
                     count = row[column]
                     count = -int(count)
                     results.append(count)
-        del results[len(results)-1]
-        
+        del results[len(results)-1]       
     data.close()
     return results
     

@@ -27,14 +27,10 @@ VUOSI = 1967
 
 AGE_GROUPS = ['85-', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9', '0-4']
 
-
 app = Flask(__name__)
 app.secret_key = 'sikrit'
 app.static_folder = 'static'
 
-#ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(), static_url_path='/static')
-#app.register_blueprint(ck, url_prefix='/ck')
-#app.jinja_env.add_extension("chartkick.ext.charts")
 
 @app.before_first_request
 def update_files():
@@ -61,8 +57,6 @@ def faktat():
     # hakee vuoden sliderista
     try:
         session['year'] = request.form['year']
-        #global VUOSI
-        #VUOSI = year
     except:
         if 'year' in session:
             pass
@@ -75,15 +69,11 @@ def faktat():
     chart_type = 'bar'
     chart = {"renderTo": chartID, "type": chart_type}
     series = [{"name": 'Miehet', "data":get_male(year)},{"name":'Naiset', "data":get_female(year)}]
-    #title = {"useHTML":"true", "text": "Suomen väestörakenne vuonna " + str(year) }
     title = {"text":""}
     xAxis = [{"categories": AGE_GROUPS, "reversed":"false", "labels":{"step":"1"}},{"opposite":"true", "reversed":"false", "categories":AGE_GROUPS, "linkedTo":"0","labels":{"step":"1"}}]
-    #yAxis = {"title":{"text":"Suomalaisia " + get_population(year)}}
     yAxis = {}
     plotOptions = {"series":{"stacking":"normal"}}
-    #plotOptions = {}
     tooltip = {}
-    #tooltip = {"formatter": "function() {return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' + 'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);}"}
 
     #presidenttihaku
     presidentin_tiedot = hae_presidentti(year)
@@ -150,8 +140,6 @@ def kuvat():
     # hakee vuoden sliderista
     try:
         session['year'] = request.form['year']
-        #global VUOSI
-        #VUOSI = year
     except:
         pass
 
@@ -167,23 +155,12 @@ def kuvat():
             url_tiedot = merkin_tiedot(postimerkit[x])
             postimerkki_tiedot = postimerkki_tiedot + url_tiedot
 
-       # for x in range(0, 4):
-       #     postimerkki_url = random.choice(postimerkit)
-       #     if (postimerkki_url not in postimerkki_urlit):
-       #         postimerkki_urlit.append(postimerkki_url)
-       #         url_tiedot = merkin_tiedot(postimerkki_url)
-       #         postimerkki_tiedot = postimerkki_tiedot + url_tiedot
-
     #finnan tulokset
     finna_kuvat = []
     finna_records = []
     finna_titles = []
     finna_sources = []
     finnaresult_list = search_finna(year)
-    #finna_kuva = FINNA_IMAGE_URL + finnaresult['image']
-    #finna_record = FINNA_RECORD_URL + urllib.quote(finnaresult['id'])
-    #finna_title = finnaresult['title']
-    #finna_source = finnaresult['building']
     for x in range(len(postimerkit)+1):
         finnaresult = random.choice(finnaresult_list)
         if (FINNA_IMAGE_URL + finnaresult['image'] not in finna_kuvat):
@@ -196,7 +173,6 @@ def kuvat():
 
 
     return render_template('kuvat.html',
-                           #postimerkki_urlit=postimerkki_urlit,
                            postimerkki_urlit=postimerkit,
                            postimerkki_tiedot=postimerkki_tiedot,
                            finna_kuva=finna_kuvat,
@@ -210,8 +186,6 @@ def videot():
     # hakee vuoden sliderista
     try:
         session['year'] = request.form['year']
-        #global VUOSI
-        #VUOSI = year
     except:
         pass
         
@@ -238,7 +212,8 @@ def videot():
                            areena_mid=mid_list,
                            year=year)
 
-                           
+      
+#pellehermanni-easteregg      
 @app.route('/pelle', methods=['GET'])
 def pelle():
     pellet = ['26-20232', '26-23794', '26-23771', '26-22033', '26-20223', '26-47064', '26-47079', '26-96928', '26-20226', '26-20209', '26-20220', '26-4144']

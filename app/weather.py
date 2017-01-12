@@ -16,7 +16,7 @@ def get_temp(year, city):
     data.close()
     return results
 
-#laskee keskilämpötilan vuoden arvoista
+#laskee keskilämpötilan vuoden arvoista, koska olinpas tyhmä enkä laskenut niitä R-skriptissä.
 def get_monthly_temp(year, city):
     daily_temp = get_temp(year, city)
     monthly_temp = []
@@ -52,8 +52,3 @@ def get_monthly_temp(year, city):
             else:
                 month += 1
     return monthly_temp
-    
-#year = raw_input("anna vuosi: ")
-#city = raw_input("anna kaupunki: ")
-#print(get_temp(year,city))
-#print(get_monthly_temp(year, city))

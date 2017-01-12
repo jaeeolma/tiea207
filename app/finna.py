@@ -4,7 +4,7 @@ import requests
 import random
 from random import randint
 
-#Koodiin haettu voimakkaasti vaikutteita FinnaBotin koodista
+#Käytännössä muokattu FinnaBotin ohjelmakoodia tähän tarkoitukseen sopivaksi
 
 FINNA_API_SEARCH='https://api.finna.fi/v1/search'
 
@@ -26,7 +26,6 @@ def validate_result(result):
     return True
 
 def get_pages(year):
-    #facet = 'era_facet:' + str(year)
     facet = 'search_daterange_mv:[' + year + ' TO ' + year + ']'
     filters = ['format:0/Image/', 'online_boolean:1', facet, '~usage_rights_str_mv:usage_A', '~usage_rights_str_mv:usage_B', '~usage_rights_str_mv:usage_C', '~usage_rights_str_mv:usage_D', '~usage_rights_str_mv:usage_E']
     params = {'filter[]': filters, 'lookfor':'', 'lng':'fi','limit':0}
@@ -48,16 +47,9 @@ def search_finna(year):
         results = [transform_hit(hit) for hit in response['records']]
         validated_results = filter(validate_result, results)
         if len(validated_results) > 0:
-            #return random.choice(validated_results)
             return validated_results
         else:
             return None
     else:
         return None
         
-#year = str(input('anna vuosi: '))
-#tulos = search_finna(year)
-#imgurl = FINNA_IMAGE_URL + tulos['image']
-#print(imgurl)
-#count = get_pages(year)
-#print(count)
